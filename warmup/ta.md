@@ -17,11 +17,11 @@ You should show them where to find the files and open them in your IDE/editor. D
 - code the solution live, compile+run;
 - explain that it is important that they test their functions early and often, so have them suggest inputs for the program that they think are meaningful (the instructions already contain examples).
 
-After testing Challenge 1 manually, explain how they can automate tests by writing code that calls that function and checks results. Challenge 1 contains a Test.java that does just that, with a set of cases already written in. Run it with `javac Test.java` and `java Test`, both before and after you code the solution live.
+After testing Challenge 1 manually, explain how they can automate this by writing code that calls the function and checks the results. Challenge 1 contains a Test.java that does exactly that, with a set of cases already written in. Run it with `javac Test.java` and `java Test`, and show them the whole set checked in one command instead of one input at a time.
 
-Go through the output before the solution exists. Most cases fail, but the ones expecting 0 already pass, because the placeholder returns 0. Make a point of this rather than glossing over it: it does not mean those are bad tests, and it does not mean the program is correct. A passing test only says it did not catch a bug this time, while a failing test proves something really is wrong.
+While the output is on screen, point at the three cases that expect 0. Those would have passed even against the empty placeholder, before any solution existed. Say out loud that this does not make them bad tests and does not mean the program is correct: a passing test only says it did not catch a bug this time, while a failing test proves something really is wrong.
 
-From Challenge 2 onward each folder has a Test.java with a single case written and a TODO; the students add the rest themselves.
+At the start of Challenge 2, before anyone has written anything, open its Test.java and run it with them. It compiles and its one case fails, which is exactly what should happen. From there each folder has a Test.java with a single case written and a TODO; the students add the rest themselves.
 
 Students should work on Challenge 2 and the remaining challenges in pairs (plus a group of 3 if odd). They should work on each problem together, NOT distribute work among themselves.
 

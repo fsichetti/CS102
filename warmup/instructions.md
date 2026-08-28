@@ -30,8 +30,8 @@ The challenges that take an array read it as one line of values separated by spa
 Testing your function is usually the best way to catch bugs in your code before someone else does.
 No test suite can catch every possible bug, but thorough testing can prevent most common errors.
 
-Your TA will work through Challenge 1 with you and test it by hand, typing one input at a time and
-re-running the program for each one. You will notice fairly quickly that this gets tedious, and that
+Start testing your solution to Challenge 1, typing one input at a time and
+re-running the program for each one. You will notice fairly quickly that this gets tedious, and
 tedious things are the things people quietly stop doing.
 
 Each folder also holds a `Test.java`. It is a small class whose `main` runs your solution on a whole
@@ -45,7 +45,7 @@ java Test
 
 You do not need to compile `Main.java` separately; `javac` finds it for you.
 
-The `Test.java` in Challenge 1 is filled in as a worked example, and your TA will run it with you.
+The `Test.java` in Challenge 1 is filled in as a worked example.
 Each of its lines looks like this:
 
 ```java
@@ -53,13 +53,13 @@ Each of its lines looks like this:
 ```
 
 That is an input and the answer you expect from it. The `check` method at the bottom of the file
-calls `countTriples` for you, so a test case is never more than one short line. Run it before the
-solution is written and look carefully at what happens: most cases fail, but the ones expecting 0
-pass, because the placeholder already returns 0.
+calls `countTriples` for you, so a test case is never more than one short line.
 
-Those are not bad tests, and they are certainly not evidence that the program works. A test that
-passes tells you only that it did not catch a bug this time. This cuts both ways all semester: a
-failing test proves something is wrong, while a passing test never proves anything is right.
+Look closely at the three cases that expect 0. Those pass even against the placeholder that returns 0,
+before any real solution has been written. They are not bad tests, and they are certainly not evidence
+that the program works. A test that passes tells you only that it did not catch a bug this time. This
+cuts both ways all semester: a failing test proves something is wrong, while a passing test never
+proves anything is right.
 
 For Challenges 2 to 6 the `Test.java` is there with a single case already written. Add one line for
 each further case you want to check. Each challenge has its own `check`, written for that challenge's
