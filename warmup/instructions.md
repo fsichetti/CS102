@@ -1,7 +1,7 @@
 # Warmup Lab
 
 This warmup lab contains six Java programming challenges.
-Complete each one and upload it to Gradescope (this lab will not count toward the final grade).
+Complete each one and upload it to Brightspace (this lab will not count toward the final grade).
 
 These are taken from [CodingBat](https://codingbat.com/java); you are encouraged to complete more of these problems on your own to refresh your Java.
 

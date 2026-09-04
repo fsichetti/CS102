@@ -6,7 +6,7 @@ Once the intro part is done, start with the Warmup Lab. The goals of this lab ar
 - Refreshing basic Java syntax
 - Familiarize the students with the recitation format
 - Have students build up the habit of testing their programs
-- Showing them how to retrieve recitation material and upload finished assignments to Gradescope
+- Showing them how to retrieve recitation material and upload finished assignments to Brightspace
 - Checking that everyone has their programming environment set up correctly
 - Having students know each other
 
@@ -31,4 +31,4 @@ If students are reluctant to work in groups:
 - explain to them that in real life, they will need to work with others, and this is a good way to practice those skills
 - encourage them to talk but do not force them
 
-In the final few minutes, show them how to upload the lab to Gradescope, which they will do once they finish the problems. This activity will not count toward the final grade, but they are encouraged to submit it anyway as if it were a graded lab. They will NOT be graded on their test quality; tests are a tool for them.
+In the final few minutes, show them how to upload the lab to Brightspace, which they will do once they finish the problems. This activity will not count toward the final grade, but they are encouraged to submit it anyway as if it were a graded lab. They will NOT be graded on their test quality; tests are a tool for them.
