@@ -1,13 +1,10 @@
 /*  ch3 - WordCount
  *
- * Should print
+ * Counts how many times a word appears in a sentence.
  *
- *     sanity check: true
- *     "the" appears 3 times
- *
- * The sanity check passes, so the comparison in the loop looks fine. It is
- * not fine. Work out why the check passes, and why that tells you nothing
- * about the strings sitting in the array.
+ * Run it, and check the answer by hand. The sanity check passes, so the
+ * comparison in the loop looks fine. It is not fine. Work out why the check
+ * passes, and why that tells you nothing about the strings in the array.
  */
 public class WordCount {
     public static void main( String [] args ) {

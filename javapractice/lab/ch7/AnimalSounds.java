@@ -1,11 +1,8 @@
 /*  ch7 - AnimalSounds
  *
- * Should print
+ * Each animal reports the sound it makes.
  *
- *     woof
- *     I say woof
- *
- * Both lines are wrong, for the same reason. The reason is not that
+ * Both printed lines are wrong, for the same reason. The reason is not that
  * speak() is broken.
  */
 public class AnimalSounds {

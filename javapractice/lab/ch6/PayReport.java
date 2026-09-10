@@ -1,12 +1,11 @@
 /*  ch6 - PayReport
  *
- * Should print the manager's real pay:
+ * A manager is paid their base salary plus their bonus.
  *
- *     Dana Reyes is paid 6000.0
- *
- * This one compiles. There is an annotation you could have written that
- * would have turned this into a compile error instead of a wrong number.
- * add it once you have found the bug.
+ * This one compiles, and the number it prints looks perfectly reasonable.
+ * Work out what it should have been. There is an annotation you could have
+ * written that would have turned this into a compile error instead of a
+ * wrong number; add it once you have found the bug.
  */
 public class PayReport {
     public static void main( String [] args ) {

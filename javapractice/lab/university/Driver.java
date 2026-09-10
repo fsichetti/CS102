@@ -5,16 +5,17 @@
  */
 public class Driver {
     public static void main( String [] args ) {
-        GradStudent cara   = new GradStudent("Cara Silva", "g01", 1, "Prof. Diallo");
-        Instructor  diallo = new Instructor("Prof. Diallo", "i01", 9000);
+        Instructor  prof        = new Instructor("Prof. Courant", "i01", 9000);
+        GradStudent gradstudent = new GradStudent("Ada Lovelace", "g01", 1, prof);
 
         Roster<Student> students = new Roster<Student>();
-        students.add( new Student("Alice Nguyen", "s01", 1) );
-        students.add( new Student("Bob Okonkwo", "s02", 2) );
-        students.add( cara );
+        students.add( new Student("Emmy Noether", "s01", 1) );
+        students.add( new Student("Alan Turing", "s02", 2) );
+        students.add( new Student("Srinivasa Ramanujan", "s03", 1) );
+        students.add( gradstudent );
 
         Roster<Instructor> staff = new Roster<Instructor>();
-        staff.add( diallo );
+        staff.add( prof );
 
         System.out.println("-- students --");
         for ( int i = 0; i < students.size(); i++ )
@@ -24,7 +25,7 @@ public class Driver {
         for ( int i = 0; i < staff.size(); i++ )
             System.out.println( staff.get(i).describe() );
 
-        Paid [] payroll = { cara, diallo };
+        Paid [] payroll = { gradstudent, prof };
         double total = 0;
         for ( int i = 0; i < payroll.length; i++ )
             total += payroll[i].monthlyPay();
