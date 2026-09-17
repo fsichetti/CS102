@@ -10,23 +10,21 @@ Lecture covered the recipe, the base/recursive case vocabulary, the public-wrapp
 
 This lab deliberately stays away from teaching multiple solutions / backtracking. `ch6` is a taste of it as an **optional** bonus for pairs who finish everything else, not something to walk through; if it comes up, let them figure it out or nudge lightly, but do not turn it into a live example.
 
-For the first two it may be useful to trace the call stack for small values like `collatzLength(1)` and `fib(4)` so they understand execution order (can be done by hand or by adding prints to the solution), and for the Fibonacci sequence example, drawing the call graph as a tree on the blackboard.
-
-The Fibonacci naive implementation will get slow for high n. This is not an issue with recursion itself but we need to pay attention to it. Leave it open to them to think of how this issue can be resolved (e.g. with a supporting array), and we will discuss it again in class.
-
 All methods should throw `IllegalArgumentException` for invalid inputs.
 
 ## ch1 — `collatzLength`, live on the board
 
 Base case `n == 1` → 0; else `1 + collatzLength(n/2)` (even) or `1 + collatzLength(3n+1)` (odd). Worth saying out loud: nobody has proven this always reaches 1 — that's the open conjecture.
 
+Trace `collatzLength(1)` by hand (or add prints to the solution) so they see execution order.
+
 Wrapper pattern for the exception: validate once in `collatzLength`, recurse in a private `collatzLengthRec` that trusts its input — same shape as lecture's `reverse`. Name it explicitly; the rest of the lab reuses it.
 
 ## ch2 — `fib`, live on the board
 
-Trace `fib(5)` as a tree, not a chain — first time a call branches into two. Point at `fib(3)`: computed twice, from scratch both times.
+Trace `fib(4)` by hand (or add prints) so they see execution order, then draw `fib(5)` as a full tree on the board — not a chain, first time a call branches into two. Point at `fib(3)`: computed twice, from scratch both times.
 
-Timing demo is in `Main.java`; run it live with `n` around 40 (recursive ≈0.5s, iterative 0ms — push to 45 for more contrast).
+Timing demo is in `Main.java`; run it live with `n` around 40 (recursive ≈0.5s, iterative 0ms — push to 45 for more contrast). This isn't an issue with recursion itself, but it's worth pausing on: leave it open for them to think about how to fix it (e.g. a supporting array), we'll return to it in class.
 
 ## ch3 — `binom`
 
