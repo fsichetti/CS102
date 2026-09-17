@@ -31,7 +31,14 @@ Each problem below ends with a short list of cases worth thinking about. You can
 
 ## ch1 — `collatzLength`
 
-Take any positive integer `n`. If it is even, divide it by 2; if it is odd, multiply it by 3 and add 1. Repeat. The Collatz conjecture says that no matter what `n` you start from, you always eventually reach 1 — it has never been proven, but it has also never failed for any number anyone has tried.
+The Collatz conjecture is a deceptively simple problem in number theory. Consider the following recurrence relation, applied repeatedly starting from any positive integer $a_0 = n$:
+
+$$
+a_{i+1} = \begin{cases} a_i / 2 & \text{if } a_i \text{ is even} \\ 3a_i + 1 & \text{if } a_i \text{ is odd} \end{cases}
+$$
+
+Which means: if `n` is even, divide it by 2; if it is odd, multiply it by 3 and add 1.
+The conjecture asserts that no matter what `n` you start from, by repeatedly applying these operations you always eventually reach 1. While this has never been proven, it has also never failed for any number anyone has tried!
 
 Write `collatzLength(n)`, which returns how many steps it takes to reach 1 from `n`. `collatzLength(1)` is 0, since you are already there. If `n` is zero or negative, throw an `IllegalArgumentException` instead of trying to compute anything.
 
@@ -46,13 +53,19 @@ Write `collatzLength(n)`, which returns how many steps it takes to reach 1 from 
 
 ## ch2 — `fib`
 
-Write a method that computes the `n`th Fibonacci number: `fib(0) = 0`, `fib(1) = 1`, and `fib(n) = fib(n-1) + fib(n-2)` for `n >= 2`. If `n` is negative, throw an `IllegalArgumentException` instead of trying to compute anything.
+The Fibonacci numbers are the sequence starting $0, 1, 1, 2, 3, 5, 8, 13, \ldots$, where each number is the sum of the two before it: $F_0 = 0$, $F_1 = 1$, and $F_n = F_{n-1} + F_{n-2}$ for $n \geq 2$.
 
-Your TA will do this one with you as well. `Main.java` also contains `fibIterative(n)`, already complete, and prints how long each version takes — try a largish `n` and watch what happens.
+Write a method `fib(n)` that computes $F_n$. If `n` is negative, throw an `IllegalArgumentException` instead of trying to compute anything.
+
+`Main.java` also contains `fibIterative(n)`, already complete, and prints how long each version takes.
+Try a larger `n` and watch what happens.
+*Why is the recursive version slower?*
+*How would you make it faster but still recursive?*
+(You don't have to do it now, we will discuss a solution in class.)
 
 ## ch3 — `binom`
 
-The binomial coefficient `binom(n, k)` counts how many ways there are to choose `k` items out of `n`. Pascal's rule gives a recursive definition: `binom(n, 0) = binom(n, n) = 1`, and otherwise `binom(n, k) = binom(n-1, k-1) + binom(n-1, k)`.
+The binomial coefficient $\binom{n}{k}$ counts how many ways there are to choose $k$ items out of $n$. Pascal's rule gives a recursive definition: $\binom{n}{0} = \binom{n}{n} = 1$, and otherwise $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$.
 
 Write `binom(n, k)` directly from that rule, for `0 <= k <= n`. If `n` or `k` is negative, or `k > n`, throw an `IllegalArgumentException` instead of trying to compute anything.
 
@@ -66,13 +79,15 @@ Write `binom(n, k)` directly from that rule, for `0 <= k <= n`. If `n` or `k` is
 
 ## ch4 — `isPalindromeRecursive`
 
-A palindrome reads the same forwards and backwards, ignoring case, spaces, and punctuation — only letters and digits count. `"Racecar"` and `"A man, a plan, a canal: Panama"` are both palindromes.
+A palindrome reads the same forwards and backwards, ignoring case, spaces, and punctuation: only letters and digits count. `"Racecar"` and `"A man, a plan, a canal: Panama"` are both palindromes.
 
-`Main.java` contains `clean(s)`, already complete, which strips everything but letters and digits and lowercases what is left. Write `isPalindromeRecursive(s)` in terms of it: clean the string once, then recurse on the result.
+`Main.java` contains `clean(s)`, already complete, which strips everything but letters and digits and lowercases what is left. Read it to see how it works. Write `isPalindromeRecursive(s)` in terms of it: clean the string once, then recurse on the result.
 
-`Main.java` also contains `isPalindromeIterative(s)`, already complete, which solves the same problem with a loop instead. Once your tests pass, compare the two. Your TA will lead a discussion on what is actually different between them.
+`Main.java` also contains `isPalindromeIterative(s)`, already complete, which solves the same problem with a loop instead. Once your tests pass, compare the two.
+*What is different between them, in what they do, and in what they cost?*
 
-**Hint.** You do not need to track index positions. A cleaned string is a palindrome if it has 0 or 1 characters, or if its first and last characters match *and* the substring strictly between them is a palindrome. Recursing on that substring costs an extra copy on every call, which is not the most efficient approach — but it is the cleanest one.
+**Hint.** A cleaned string is a palindrome if it has 0 or 1 characters, or if its first and last characters match *and* the substring strictly between them is a palindrome. Recursing on that substring costs an extra copy on every call, which is not the most efficient approach, but it is the cleanest one and it's OK for the submission.
+*Think of how you could make it more efficient.*
 
 **Testing.** Does your function work if you give it:
 
@@ -80,7 +95,7 @@ A palindrome reads the same forwards and backwards, ignoring case, spaces, and p
 - a single character?
 - a string that is not a palindrome at all?
 - a string that would be a palindrome only once you drop punctuation and spacing?
-- `null`? (this should throw an `IllegalArgumentException` — you get this for free by going through `clean`)
+- `null`? (this should throw an `IllegalArgumentException`, you get this for free by going through `clean`)
 
 ## ch5 — `ruler`
 
@@ -89,6 +104,8 @@ A ruler of height `h` is built like this: draw a ruler of height `h-1`, then a t
 Write `ruler(h)`, which returns the whole ruler as a single `String`, one tick per line. A tick of height `k` is `k` dashes followed by a newline. If `h` is negative, throw an `IllegalArgumentException` instead of trying to compute anything.
 
 **Hint.** `"-".repeat(k)` gives you a tick of height `k`; add `"\n"` to end its line.
+
+*You can build the string with `String` concatenation, which, as with the substring approach in ch4, is not the fastest way. To make it faster, you can use the `StringBuilder` class; we will cover it properly once we get to array-based lists.*
 
 - `ruler(2)` returns the string `"-\n--\n-\n"`, which prints as:
   ```
@@ -106,6 +123,6 @@ Write `ruler(h)`, which returns the whole ruler as a single `String`, one tick p
 
 ## ch6 — `binarySequences` (bonus, not required)
 
-Write `binarySequences(n)`, which returns every binary string of length `n` as a `String` array — for instance, `binarySequences(2)` should return an array holding `"00"`, `"01"`, `"10"`, and `"11"`, in some order. `Main.java` already prints the array it gets back. If `n` is negative, throw an `IllegalArgumentException` instead of trying to compute anything.
+Write `binarySequences(n)`, which returns every binary string of length `n` as a `String` array. For instance, `binarySequences(2)` should return an array holding `"00"`, `"01"`, `"10"`, and `"11"`, in some order. `Main.java` already prints the array it gets back. If `n` is negative, throw an `IllegalArgumentException` instead of trying to compute anything.
 
-**Note.** `binarySequences(0)` should return an array holding a single empty string, not an empty array — but `Main.java` prints both of those identically as `[]`, since printing an empty string prints nothing. Check `.length` if you want to tell them apart.
+**Note.** `binarySequences(0)` should return an array holding a single empty string, not an empty array, but `Main.java` prints both of those identically as `[]`, since printing an empty string prints nothing. Check `.length` if you want to tell them apart.
