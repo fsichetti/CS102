@@ -1,4 +1,8 @@
+package sorting;
+
+import catalog.Book;
 import java.util.Arrays;
+import order.BookOrder;
 
 public abstract class SortingAlgorithm {
 

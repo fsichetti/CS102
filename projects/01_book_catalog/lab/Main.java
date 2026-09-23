@@ -1,6 +1,11 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import catalog.*;
+import order.*;
+import searching.*;
+import sorting.*;
+
 public class Main {
 
     // Given, complete: the four field orders are fixed and known in advance, unlike algorithms.

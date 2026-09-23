@@ -1,3 +1,7 @@
+package order;
+
+import catalog.Book;
+
 public class ById implements BookOrder {
 
     @Override

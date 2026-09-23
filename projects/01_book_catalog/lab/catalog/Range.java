@@ -1,3 +1,5 @@
+package catalog;
+
 public class Range<T extends Comparable<T>> {
 
     private T min;

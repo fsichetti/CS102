@@ -1,3 +1,6 @@
+package order;
+
+import catalog.Book;
 import java.util.Comparator;
 
 // The field-selection mechanism: genuinely a Comparator<Book>, not just shaped like one.

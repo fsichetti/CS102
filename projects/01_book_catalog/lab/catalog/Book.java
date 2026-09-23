@@ -1,3 +1,5 @@
+package catalog;
+
 public class Book {
 
     private static int nextId = 1;

@@ -1,3 +1,8 @@
+package searching;
+
+import catalog.Book;
+import order.BookOrder;
+
 public abstract class SearchAlgorithm {
 
     // Yours to maintain: one per comparison. Searching moves nothing, so there is no move counter.

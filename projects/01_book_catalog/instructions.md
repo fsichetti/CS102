@@ -12,14 +12,14 @@ What you should turn in:
 
 ## How the project is organized
 
-For simplicity, every file shares the same unnamed package regardless of which folder it's in: `order/`, `sorting/`, `searching/` are organization only, not Java packages, so nothing needs an `import` to see anything else here.
+The code is split into four **packages**, one per folder: `catalog`, `order`, `sorting`, `searching`. The folder name *is* the package name: a file in `sorting/` starts with `package sorting;`, and code elsewhere reaches it with `import sorting.SortingAlgorithm;`. `Main.java` sits at the top, outside any package.
 
 | File | Status |
 |---|---|
 | `Main.java` | given, complete: the main REPL loop |
-| `Book.java` | given, complete |
-| `Catalog.java` | given, **except** `loadFromFile` |
-| `Range.java` | `TODO` |
+| `catalog/Book.java` | given, complete |
+| `catalog/Catalog.java` | given, **except** `loadFromFile` |
+| `catalog/Range.java` | `TODO` |
 | `order/BookOrder.java`, `ById.java`, `ByTitle.java`, `ByAuthor.java`, `ByYear.java` | given, complete |
 | `sorting/SortingAlgorithm.java` | given, complete, abstract; nothing to do but extend it |
 | `searching/SearchAlgorithm.java` | given, complete, abstract; nothing to do but extend it |
@@ -27,7 +27,14 @@ For simplicity, every file shares the same unnamed package regardless of which f
 
 `sorting/` and `searching/` each ship with exactly one file: an abstract contract. **You should add your own concrete class(es) to those folders**, extending those two. See "Choosing your algorithms" below.
 
-The scaffold compiles and runs before you've written anything. Every `sort`/`find` command will fail with "unknown algorithm" until you've added one.
+To compile and run, from the folder containing `Main.java`:
+
+```
+javac Main.java
+java Main
+```
+
+`javac` finds every other class on its own, by following package names to folders. The scaffold compiles and runs before you've written anything; every `sort`/`find` command will fail with "unknown algorithm" until you've added one.
 
 ## The REPL
 
@@ -107,11 +114,26 @@ No algorithm is given, not even as a template. You pick which ones to write. Req
 - **At least two sorting algorithms with different growth rates** (e.g. one $O(n^2)$, one $O(n \log n)$).
 - **Both a scan-the-whole-array search and one that exploits sorted order.**
 
-Beyond that minimum it's your call. Every class you write needs a one-line constructor chaining to its parent:
+Beyond that minimum it's your call. Each class goes in its own file in `sorting/` or `searching/`, and starts like this:
 
 ```java
-public InsertionSort(BookOrder order) { super(order); }
+package sorting;
+
+import catalog.Book;
+import order.BookOrder;
+
+public class InsertionSort extends SortingAlgorithm {
+
+    public InsertionSort(BookOrder order) { super(order); }
+
+    @Override
+    public void sort(Book[] a) {
+        //TODO
+    }
+}
 ```
+
+Without the `package` line, `javac` won't find `SortingAlgorithm`; without the imports, it won't find `Book` or `BookOrder`.
 
 `Main` can't know what you'll name your classes, so you register each one yourself in `makeSortAlgorithm`/`makeSearchAlgorithm`, each a `switch` with a `//TODO` marker. Add one `case` per class:
 
