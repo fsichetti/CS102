@@ -1,0 +1,10 @@
+Absalom Absalom,William Faulkner,1936
+The Inheritors,William Golding,1955
+Hard Times,Charles Dickens,1854
+Catch-22,Joseph Heller,1961
+The Great Gatsby,F. Scott Fitzgerald,1925
+The English Patient,Michael Ondaatje,1992
+Germinal,Emile Zola,1885
+The Secret History,Donna Tartt,1992
+Jude the Obscure,Thomas Hardy,1895
+The Autumn of the Patriarch,Gabriel Garcia Marquez,1975

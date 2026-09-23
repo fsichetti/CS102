@@ -1,0 +1,50 @@
+One Hundred Years of Solitude,Gabriel Garcia Marquez,1967
+Kidnapped,Robert Louis Stevenson,1886
+Wuthering Heights,Emily Bronte,1847
+Vanity Fair,William Makepeace Thackeray,1848
+The Color Purple,Alice Walker,1982
+Their Eyes Were Watching God,Zora Neale Hurston,1937
+Beloved Country,Alan Paton,1948
+David Copperfield,Charles Dickens,1850
+The Handmaid's Tale,Margaret Atwood,1985
+The Old Man and the Sea,Ernest Hemingway,1952
+Wild Sheep Chase,Haruki Murakami,1982
+A Suitable Boy,Vikram Seth,1993
+The Mayor of Casterbridge,Thomas Hardy,1886
+Infinite Jest,David Foster Wallace,1996
+The Importance of Being Earnest,Oscar Wilde,1895
+Frankenstein,Mary Shelley,1818
+Rabbit Is Rich,John Updike,1981
+Fathers and Sons,Ivan Turgenev,1862
+The Glass Bead Game,Hermann Hesse,1943
+A Room with a View,E. M. Forster,1908
+Dubliners,James Joyce,1914
+Homage to Catalonia,George Orwell,1938
+A Portrait of the Artist as a Young Man,James Joyce,1916
+The Wind-Up Bird Chronicle,Haruki Murakami,1994
+The Satanic Verses,Salman Rushdie,1988
+Jane Eyre,Charlotte Bronte,1847
+Point Counter Point,Aldous Huxley,1928
+The Picture of Dorian Gray,Oscar Wilde,1890
+Portnoy's Complaint,Philip Roth,1969
+Chronicle of a Death Foretold,Gabriel Garcia Marquez,1981
+No Country for Old Men,Cormac McCarthy,2005
+Kokoro,Natsume Soseki,1914
+The Leopard,Giuseppe Tomasi di Lampedusa,1958
+Pride and Prejudice,Jane Austen,1813
+The Mill on the Floss,George Eliot,1860
+Emma,Jane Austen,1815
+Silence,Shusaku Endo,1966
+Tender Is the Night,F. Scott Fitzgerald,1934
+Pnin,Vladimir Nabokov,1957
+1Q84,Haruki Murakami,2009
+Persuasion,Jane Austen,1817
+As I Lay Dying,William Faulkner,1930
+Animal Farm,George Orwell,1945
+Go Tell It on the Mountain,James Baldwin,1953
+Dead Souls,Nikolai Gogol,1842
+Dharma Bums,Jack Kerouac,1958
+Native Son,Richard Wright,1940
+Great Expectations,Charles Dickens,1861
+The Sun Also Rises,Ernest Hemingway,1926
+V.,Thomas Pynchon,1963

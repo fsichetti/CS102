@@ -1,0 +1,16 @@
+Absalom Absalom,William Faulkner,1936
+The Inheritors,William Golding,1955
+Hard Times,Charles Dickens,1854
+Catch-22,Joseph Heller,1961
+The Great Gatsby,F. Scott Fitzgerald,1925
+The English Patient,Michael Ondaatje,1992
+Germinal,Emile Zola,1885
+The Broken Spine,Some Author,not-a-year
+The Secret History,Donna Tartt,1992
+Jude the Obscure,Thomas Hardy,1895
+The Autumn of the Patriarch,Gabriel Garcia Marquez,1975
+One Hundred Years of Solitude,Gabriel Garcia Marquez,1967
+Kidnapped,Robert Louis Stevenson,1886
+Wuthering Heights,Emily Bronte,1847
+Vanity Fair,William Makepeace Thackeray,1848
+The Color Purple,Alice Walker,1982

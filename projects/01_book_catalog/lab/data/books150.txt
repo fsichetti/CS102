@@ -1,0 +1,150 @@
+Never Let Me Go,Kazuo Ishiguro,2005
+The Woman in the Dunes,Kobo Abe,1962
+Moll Flanders,Daniel Defoe,1722
+Underworld,Don DeLillo,1997
+A Modest Proposal,Jonathan Swift,1729
+The Waves,Virginia Woolf,1931
+A Visit from the Goon Squad,Jennifer Egan,2010
+Steppenwolf,Hermann Hesse,1927
+Gulliver's Travels,Jonathan Swift,1726
+Oliver Twist,Charles Dickens,1838
+Little Dorrit,Charles Dickens,1857
+The Master and Margarita,Mikhail Bulgakov,1967
+The Bell Jar,Sylvia Plath,1963
+The Brothers Karamazov,Fyodor Dostoevsky,1880
+The Mandarins,Simone de Beauvoir,1954
+Black Boy,Richard Wright,1945
+The Grapes of Wrath,John Steinbeck,1939
+We,Yevgeny Zamyatin,1924
+A Tale of Two Cities,Charles Dickens,1859
+War and Peace,Leo Tolstoy,1869
+Americanah,Chimamanda Ngozi Adichie,2013
+Freedom,Jonathan Franzen,2010
+No Longer at Ease,Chinua Achebe,1960
+Lord of the Flies,William Golding,1954
+Petals of Blood,Ngugi wa Thiong'o,1977
+Tess of the d'Urbervilles,Thomas Hardy,1891
+The Rainbow,D. H. Lawrence,1915
+The Strange Case of Dr Jekyll and Mr Hyde,Robert Louis Stevenson,1886
+Norwegian Wood,Haruki Murakami,1987
+Purple Hibiscus,Chimamanda Ngozi Adichie,2003
+Song of Solomon,Toni Morrison,1977
+The Road,Cormac McCarthy,2006
+Lolita,Vladimir Nabokov,1955
+The Charterhouse of Parma,Stendhal,1839
+Rebecca,Daphne du Maurier,1938
+Sentimental Education,Gustave Flaubert,1869
+For Whom the Bell Tolls,Ernest Hemingway,1940
+The Fall,Albert Camus,1956
+Naked Lunch,William S. Burroughs,1959
+The Pilgrim's Progress,John Bunyan,1678
+Siddhartha,Hermann Hesse,1922
+Beloved,Toni Morrison,1987
+American Pastoral,Philip Roth,1997
+Robinson Crusoe,Daniel Defoe,1719
+Rabbit Run,John Updike,1960
+Snow Country,Yasunari Kawabata,1948
+No Exit,Jean-Paul Sartre,1944
+The Overcoat,Nikolai Gogol,1842
+Half of a Yellow Sun,Chimamanda Ngozi Adichie,2006
+Women in Love,D. H. Lawrence,1920
+Blood Meridian,Cormac McCarthy,1985
+A Passage to India,E. M. Forster,1924
+Moby-Dick,Herman Melville,1851
+The Secret Agent,Joseph Conrad,1907
+Pincher Martin,William Golding,1956
+Nana,Emile Zola,1880
+The Human Stain,Philip Roth,2000
+Middlemarch,George Eliot,1871
+The Fire Next Time,James Baldwin,1963
+The Bluest Eye,Toni Morrison,1970
+Love in the Time of Cholera,Gabriel Garcia Marquez,1985
+Doctor Zhivago,Boris Pasternak,1957
+Dracula,Bram Stoker,1897
+The Red and the Black,Stendhal,1830
+Giovanni's Room,James Baldwin,1956
+Heart of Darkness,Joseph Conrad,1899
+Sula,Toni Morrison,1973
+Treasure Island,Robert Louis Stevenson,1883
+All the Pretty Horses,Cormac McCarthy,1992
+Notes from Underground,Fyodor Dostoevsky,1864
+The Trial,Franz Kafka,1925
+Brave New World,Aldous Huxley,1932
+The Corrections,Jonathan Franzen,2001
+Crime and Punishment,Fyodor Dostoevsky,1866
+Barchester Towers,Anthony Trollope,1857
+Bartleby the Scrivener,Herman Melville,1853
+Mrs Dalloway,Virginia Woolf,1925
+Midnight's Children,Salman Rushdie,1981
+Demons,Fyodor Dostoevsky,1872
+The Second Sex,Simone de Beauvoir,1949
+The Death of Ivan Ilyich,Leo Tolstoy,1886
+Madame Bovary,Gustave Flaubert,1856
+Ulysses,James Joyce,1922
+Don Quixote,Miguel de Cervantes,1605
+Alias Grace,Margaret Atwood,1996
+Cat's Eye,Margaret Atwood,1988
+An Artist of the Floating World,Kazuo Ishiguro,1986
+Libra,Don DeLillo,1988
+The Broom of the System,David Foster Wallace,1987
+Things Fall Apart,Chinua Achebe,1958
+Orlando,Virginia Woolf,1928
+To the Lighthouse,Virginia Woolf,1927
+The Castle,Franz Kafka,1926
+Kafka on the Shore,Haruki Murakami,2002
+Mansfield Park,Jane Austen,1814
+The Blind Assassin,Margaret Atwood,2000
+Lord Jim,Joseph Conrad,1900
+The Remains of the Day,Kazuo Ishiguro,1989
+Shame,Salman Rushdie,1983
+Anna Karenina,Leo Tolstoy,1877
+White Noise,Don DeLillo,1985
+The Warden,Anthony Trollope,1855
+In the Skin of a Lion,Michael Ondaatje,1987
+The Catcher in the Rye,J. D. Salinger,1951
+The Metamorphosis,Franz Kafka,1915
+Nineteen Eighty-Four,George Orwell,1949
+Les Miserables,Victor Hugo,1862
+Something Happened,Joseph Heller,1974
+The Stranger,Albert Camus,1942
+A Farewell to Arms,Ernest Hemingway,1929
+Cannery Row,John Steinbeck,1945
+The Hunchback of Notre Dame,Victor Hugo,1831
+Life of Pi,Yann Martel,2001
+The Crying of Lot 49,Thomas Pynchon,1966
+This Side of Paradise,F. Scott Fitzgerald,1920
+Cold Comfort Farm,Stella Gibbons,1932
+East of Eden,John Steinbeck,1952
+Paradise Lost,John Milton,1667
+Bleak House,Charles Dickens,1853
+Rabbit Redux,John Updike,1971
+Silas Marner,George Eliot,1861
+Howards End,E. M. Forster,1910
+Beloved Ashes,Toni Morrison,1992
+Invisible Man,Ralph Ellison,1952
+Pale Fire,Vladimir Nabokov,1962
+The Three Musketeers,Alexandre Dumas,1844
+Down and Out in Paris and London,George Orwell,1933
+Cat's Cradle,Kurt Vonnegut,1963
+Gravity's Rainbow,Thomas Pynchon,1973
+The Plague,Albert Camus,1947
+Of Mice and Men,John Steinbeck,1937
+Nostromo,Joseph Conrad,1904
+A Grain of Wheat,Ngugi wa Thiong'o,1967
+Breakfast of Champions,Kurt Vonnegut,1973
+Far from the Madding Crowd,Thomas Hardy,1874
+The Idiot,Fyodor Dostoevsky,1869
+A Clockwork Orange,Anthony Burgess,1962
+The Count of Monte Cristo,Alexandre Dumas,1844
+On the Road,Jack Kerouac,1957
+Sense and Sensibility,Jane Austen,1811
+Franny and Zooey,J. D. Salinger,1961
+Light in August,William Faulkner,1932
+Sons and Lovers,D. H. Lawrence,1913
+Slaughterhouse-Five,Kurt Vonnegut,1969
+The Tenant of Wildfell Hall,Anne Bronte,1848
+The God of Small Things,Arundhati Roy,1997
+The Sound and the Fury,William Faulkner,1929
+The Return of the Native,Thomas Hardy,1878
+Nausea,Jean-Paul Sartre,1938
+The Sound of the Mountain,Yasunari Kawabata,1954
