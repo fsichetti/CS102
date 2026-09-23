@@ -132,10 +132,9 @@ public class Main {
                         long start = System.nanoTime();
                         catalog.applySort(algorithm);
                         double ms = (System.nanoTime() - start) / 1_000_000.0;
-                        System.out.printf("sorted %d books by %s using %s: %d comparisons, "
-                                        + "%d moves, %.3f ms%n",
+                        System.out.printf("sorted %d books by %s using %s: %d operations, %.3f ms%n",
                                 catalog.size(), algorithm.getOrderName(), algorithm.getName(),
-                                algorithm.getComparisons(), algorithm.getMoves(), ms);
+                                algorithm.getOperations(), ms);
                         break;
                     }
 
@@ -151,8 +150,8 @@ public class Main {
                         int index = catalog.find(algorithm, parts[2]);
                         double ms = (System.nanoTime() - start) / 1_000_000.0;
                         String result = (index == -1) ? "not found" : ("found: " + catalog.toArray()[index]);
-                        System.out.printf("%s (%d comparisons, %.3f ms)%n",
-                                result, algorithm.getComparisons(), ms);
+                        System.out.printf("%s (%d operations, %.3f ms)%n",
+                                result, algorithm.getOperations(), ms);
                         break;
                     }
 

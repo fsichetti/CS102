@@ -6,9 +6,8 @@ import order.BookOrder;
 
 public abstract class SortingAlgorithm {
 
-    // Yours to maintain: one comparison and one array write each. A swap is two moves.
-    protected long comparisons;
-    protected long moves;
+    // Yours to maintain: +1 per comparison and +1 per array write (so a swap is +2).
+    protected long operations;
 
     // Compare two books with order.compare(x, y): negative, zero, or positive.
     protected final BookOrder order;
@@ -18,10 +17,8 @@ public abstract class SortingAlgorithm {
     // The one method you implement. Sort `a` in place, ascending by `order`, counting as you go.
     public abstract void sort(Book[] a);
 
-    public long getComparisons() { return comparisons; }
-    public long getMoves() { return moves; }
-    public long getOpCount() { return comparisons + moves; }
-    public void resetCounters() { comparisons = 0; moves = 0; }
+    public long getOperations() { return operations; }
+    public void resetOperations() { operations = 0; }
 
     public String getName() { return getClass().getSimpleName(); }
     public String getOrderName() { return order.getName(); }

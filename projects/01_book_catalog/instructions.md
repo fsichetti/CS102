@@ -1,7 +1,7 @@
 # Book Catalog
 
 You will build a REPL ("read-eval-print-loop", i.e. a command loop, like a tiny shell) to manage a catalog of books.
-You may choose which sorting and searching algorithms to implement.
+You implement linear and binary search, and sorting algorithms of your choice.
 
 ## Deliverables
 
@@ -25,7 +25,7 @@ The code is split into four **packages**, one per folder: `catalog`, `order`, `s
 | `searching/SearchAlgorithm.java` | given, complete, abstract; nothing to do but extend it |
 | `data/books10.txt`, `books50.txt`, `books150.txt`, `broken.txt` | given sample data |
 
-`sorting/` and `searching/` each ship with exactly one file: an abstract contract. **You should add your own concrete class(es) to those folders**, extending those two. See "Choosing your algorithms" below.
+`sorting/` and `searching/` each ship with exactly one file: an abstract contract. **You should add your own concrete class(es) to those folders**, extending those two. See "Your algorithms" below.
 
 To compile and run, from the folder containing `Main.java`:
 
@@ -55,24 +55,23 @@ quit                             exit
 
 ## The contract: `SortingAlgorithm`
 
-Every algorithm extends `SortingAlgorithm` and implements one method: `public void sort(Book[] a)`, sorting `a` in place. Reads and index arithmetic are considered free; what counts is comparisons and moves (array writes). Two inherited counters track them, and keeping them up to date is your job:
+Every algorithm extends `SortingAlgorithm` and implements one method: `public void sort(Book[] a)`, sorting `a` in place. Reads and index arithmetic are considered free; what counts is comparisons and array writes. One inherited counter tracks both, and keeping it up to date is your job:
 
 ```java
-protected long comparisons;   // one per comparison
-protected long moves;         // one per array write, so a swap is two
+protected long operations;   // +1 per comparison, +1 per array write (a swap is +2)
 ```
 
 Comparisons go through the inherited `order` field, which returns a negative number, zero, or a positive number in the usual way:
 
 ```java
-comparisons++;
+operations++;
 if (order.compare(a[j], a[j + 1]) > 0) {
     // ... swap a[j] and a[j + 1]
-    moves += 2;
+    operations += 2;
 }
 ```
 
-`getOpCount()` returns comparisons plus moves, and `resetCounters()` zeroes both. Nothing checks that your counts are right except you: a miscounted algorithm still sorts correctly and still passes `testSort`. If you prefer to wrap the comparing and writing in your own small helper methods so the counting lives in one place, that's fine, just don't count in both places.
+`getOperations()` reads it and `resetOperations()` zeroes it. Nothing checks that your counts are right except you: a miscounted algorithm still sorts correctly and still passes `testSort`. If you prefer to wrap the comparing and writing in your own small helper methods so the counting lives in one place, that's fine, just don't count in both places.
 
 **Testing.** `SortingAlgorithm` gives you `testSort(Book[] a)`, already implemented: it sorts a copy and compares against the JDK's own sort. Check that yours works on:
 
@@ -97,7 +96,7 @@ public interface BookOrder extends Comparator<Book> {
 
 ## The contract: `SearchAlgorithm`
 
-Smaller sibling of `SortingAlgorithm`. Searching moves nothing, so there's only a `comparisons` counter, the same inherited `order`, and one method to implement:
+Smaller sibling of `SortingAlgorithm`. Searching moves nothing, so there's the same `operations` counter (comparisons only, here), the same inherited `order`, and one method to implement:
 
 ```java
 public abstract int find(Book[] a, String query)   // returns the index of a match, or -1
@@ -105,16 +104,16 @@ public abstract int find(Book[] a, String query)   // returns the index of a mat
 
 `query` is the raw text typed at the prompt. `order.compareToQuery(book, query)` compares one book's field against it and parses the value for numeric fields, so `find` never has to know what Java type a field is. Count each of those calls, same as in a sort.
 
-A search that scans the whole array works regardless of sort order. A search that skips around based on comparisons only gives correct answers if the array is actually ordered by the field you're searching on, and nothing in the given code stops you from running it when that's not true. It will just return a wrong answer, silently, sometimes even a coincidentally correct-looking one.
+Linear search works regardless of sort order. Binary search only gives correct answers if the array is actually ordered by the field you're searching on, and nothing in the given code stops you from running it when that's not true. It will just return a wrong answer, silently, sometimes even a coincidentally correct-looking one.
 
-## Choosing your algorithms
+## Your algorithms
 
-No algorithm is given, not even as a template. You pick which ones to write. Required minimum:
+No algorithm is given, not even as a template. You write:
 
-- **At least two sorting algorithms with different growth rates** (e.g. one $O(n^2)$, one $O(n \log n)$).
-- **Both a scan-the-whole-array search and one that exploits sorted order.**
+- **Linear search and binary search**, one class each.
+- **At least two sorting algorithms with different growth rates** (e.g. one $O(n^2)$, one $O(n \log n)$). Which ones is your choice, and you can write more.
 
-Beyond that minimum it's your call. Each class goes in its own file in `sorting/` or `searching/`, and starts like this:
+Each class goes in its own file in `sorting/` or `searching/`, and starts like this:
 
 ```java
 package sorting;
@@ -178,21 +177,20 @@ This backs the `range` command, already wired up in `Main`: it builds a `Range<I
 
 ## Rules
 
-- No lambdas, no streams, nothing outside the standard JDK.
-- `Arrays.copyOf` and `Arrays.equals` are fine anywhere. `Arrays.sort` is only used inside given code, not inside any algorithm you write.
-- Don't modify a file marked "given" above.
+- You may call `Arrays.sort` while testing, e.g. to check your own results, but no submitted algorithm may use it.
+- You may add methods, overloads or fields to the given files if they help you. Don't remove anything or change what the existing code does.
 - Assume no commas inside a title or author field.
 
 ## Design questions
 
 Answer these in your submitted file, a paragraph each.
 
-1. Why does `BookOrder` extend `Comparator<Book>` instead of having `Book` implement `Comparable<Book>`? What's different about sorting a catalog by a field you pick at runtime versus sorting, say, a `String[]`?
-2. After `load` appends a few books to an already-sorted catalog, which algorithm do you re-sort with, and why? What changes when the file you loaded is large rather than small, and where would you put the threshold between the two?
+1. Why does `BookOrder` extend `Comparator<Book>` instead of having `Book` implement `Comparable<Book>`?
+2. After `load` appends books to an already-sorted catalog, which algorithm do you re-sort with, depending on how many books were added?
 3. Why does `Catalog` track which field it's sorted by, instead of just re-sorting before every `find`?
-4. What happens when a search that relies on sorted order runs on a field the catalog isn't sorted by? Why doesn't the given code prevent it?
-5. Why does `Range<T>` need the bound `T extends Comparable<T>`? What would fail to compile without it?
-6. Which of your algorithms would you *not* run on a catalog of half a million books, and why? Cite an operation-count trend you actually observed.
+4. What happens when binary search runs on a field the catalog isn't sorted by?
+5. Why does `Range<T>` need the bound `T extends Comparable<T>`?
+6. Which of your algorithms would you *not* run on a catalog of half a million books, based on the operation counts you observed?
 
 ## Grading
 
