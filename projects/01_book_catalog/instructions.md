@@ -156,7 +156,7 @@ File format: one book per line, `title,author,year`, no header. Read it with `Sc
 
 **`load` appends, it doesn't replace.** If you `sort` the catalog and then `load` a small file, the result is a long sorted run with a few new entries tacked on the end: not sorted, but not random either.
 
-So: if the catalog is already sorted and you add a handful of books, which algorithm restores order fastest? Is that still the right choice when the file you loaded is as large as the catalog itself? The data files are sized to let you try both: `load books150`, `sort`, then `load books10` is the first case; `load books50`, `sort`, then `load books150` is the second. Compare the operation counts. A hybrid that picks an algorithm based on how much was added is a perfectly acceptable answer, as long as you can say where the threshold is and why.
+So: if the catalog is already sorted and you add a handful of books, which algorithm restores order fastest? Is that still the right choice when the file you loaded is as large as the catalog itself? The data files are sized to let you try both: `load data/books150.txt`, `sort`, then `load data/books10.txt` is the first case; `load data/books50.txt`, `sort`, then `load data/books150.txt` is the second. Compare the operation counts. A hybrid that picks an algorithm based on how much was added is a perfectly acceptable answer, as long as you can say where the threshold is and why.
 
 ## `Range<T>`
 
