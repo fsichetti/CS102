@@ -1,0 +1,17 @@
+Answer each question in a few sentences. Quote numbers from your own tables.
+
+1. For each kind of input, which algorithm made the fewest operations?
+   Which algorithms grew quadratically? Quote the ratio column.
+
+   uniform:
+   almost sorted:
+   almost reverse sorted:
+   few unique:
+
+2. Which result surprised you? Why do you think it happens?
+
+3. The times do not always grow the way the operation counts do, especially at
+   small sizes. Why? When they disagree, what else is the time measuring?
+
+4. (Optional) After fixing partition: what changed on few unique, and on the
+   other inputs? Why?
