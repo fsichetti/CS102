@@ -1,0 +1,210 @@
+{\Large\bfseries Mockup\par}
+\bigskip
+
+\fullname
+
+30 minutes, one handwritten or 4x6 index card (or A6) cheat sheet allowed, no printed material.
+
+\bigskip
+\begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
+\bigskip
+
+\begin{question}
+Two algorithms A and B perform the same task. Algorithm A has a worst-case complexity
+of O(NlogN). Algorithm B has a worst-case complexity of O(N).
+Both are executed on the same input of size N = 1000, on the same computer: A takes 1 ms, B takes 3 ms.
+
+Which of the following are true (select one or more):
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] the measurements must be wrong, since B should be faster
+\item[\cb{0}] algorithm A is faster than algorithm B for every $N$
+\item[\cb{1}] algorithm B is faster than algorithm A for large enough $N$
+\item[\cb{0}] algorithm A is faster than algorithm B for every $N < 1000$
+\item[\cb{0}] algorithm A is also faster than algorithm B on an input of size $N = 2000$
+\end{itemize}
+\end{question}
+
+\begin{question}
+The array \lstinline|{4, 7, 2, 9, 1, 5}| is sorted in ascending order.
+
+Selection sort: each pass finds the smallest element of the unsorted part and swaps it with the first element of the unsorted part.
+What does the array look like after the first two passes?
+
+Answer: \underline{\hspace{2in}} \ifanswers (\{1, 2, 7, 9, 4, 5\})\fi
+
+Insertion sort: what does the array look like after the first three passes (that is, after the elements at indices 1, 2 and 3 have been inserted)?
+
+Answer: \underline{\hspace{2in}} \ifanswers (\{2, 4, 7, 9, 1, 5\})\fi
+\end{question}
+
+\begin{question}
+Consider the following class.
+
+\begin{lstlisting}
+class Word implements Comparable<Word> {
+    String text;
+    Word(String text) { this.text = text; }
+
+    public int compareTo(Word other) {
+        return text.length() - other.text.length();
+    }
+}
+\end{lstlisting}
+
+The array below is sorted with a \textbf{stable} sorting algorithm, using \lstinline|compareTo| to compare elements.
+
+\begin{lstlisting}
+Word[] words = { new Word("pear"), new Word("fig"), new Word("plum"),
+                 new Word("banana"), new Word("kiwi"), new Word("apple"),
+                 new Word("date") };
+\end{lstlisting}
+
+In which order are the words after sorting?
+
+Answer: \underline{\hspace{3in}} \ifanswers (fig, pear, plum, kiwi, date, apple, banana)\fi
+\end{question}
+
+\begin{question}
+A sorting algorithm is \textbf{stable} if (select one):
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] its running time is the same on every input of size N
+\item[\cb{0}] it runs faster on input that is already partly sorted
+\item[\cb{1}] equal elements keep their original relative order
+\item[\cb{0}] it uses only O(1) extra memory
+\item[\cb{0}] it never compares the same pair of elements twice
+\end{itemize}
+\end{question}
+
+\begin{question}
+The following method of an array-based list of \lstinline|double|s should insert \lstinline|e| at position \lstinline|pos|, moving the elements from \lstinline|pos| to \lstinline|size - 1| up by one position.
+\lstinline|data| is the array holding the elements and \lstinline|size| is the number of elements in the list.
+
+\begin{lstlisting}
+void add(int pos, double e) {
+    if (pos < 0 || pos > size) throw new IndexOutOfBoundsException();
+    if (size == data.length) grow();
+    for (int i = pos; i < size; i++)
+        data[i + 1] = data[i];
+    data[pos] = e;
+    size++;
+}
+\end{lstlisting}
+
+The list contains \lstinline|[1, 2, 3, 4]|. What does it contain after \lstinline|add(0, 9)|?
+
+Answer: \underline{\hspace{2in}} \ifanswers ([9, 1, 1, 1, 1])\fi
+
+Fix the method by rewriting the loop.
+
+\ifanswers
+\begin{lstlisting}
+    for (int i = size; i > pos; i--)
+        data[i] = data[i - 1];
+\end{lstlisting}
+\else
+\vspace{0.8in}
+\fi
+\end{question}
+
+\begin{question}
+The following method merges two arrays sorted in ascending order into a new sorted array.
+Two lines are missing: which of the following completes the method correctly?
+
+\begin{lstlisting}
+int[] merge(int[] x, int[] y) {
+    int[] result = new int[x.length + y.length];
+    int i = 0, j = 0, k = 0;
+    while (i < x.length && j < y.length) {
+        if (x[i] <= y[j]) result[k++] = x[i++];
+        else              result[k++] = y[j++];
+    }
+    ___
+    ___
+    return result;
+}
+\end{lstlisting}
+
+Answer:
+\begin{itemize}[leftmargin=2em,itemsep=3pt,topsep=2pt]
+\item[\cb{0}] \lstinline[keepspaces=true]|if (i < x.length) result[k++] = x[i++];|\\
+              \lstinline[keepspaces=true]|if (j < y.length) result[k++] = y[j++];|
+\item[\cb{1}] \lstinline[keepspaces=true]|while (i < x.length) result[k++] = x[i++];|\\
+              \lstinline[keepspaces=true]|while (j < y.length) result[k++] = y[j++];|
+\item[\cb{0}] \lstinline[keepspaces=true]|while (i < x.length) result[k++] = y[j++];|\\
+              \lstinline[keepspaces=true]|while (j < y.length) result[k++] = x[i++];|
+\item[\cb{0}] \lstinline[keepspaces=true]|while (k < result.length) result[k++] = x[i++];|\\
+              \lstinline[keepspaces=true]|while (k < result.length) result[k++] = y[j++];|
+\item[\cb{0}] none of the above, the remaining elements need to be merged with another loop like the one above
+\end{itemize}
+\end{question}
+
+\begin{question}
+For each statement, mark whether it is part of the List ADT (true for every implementation of a list) or specific to the array-based implementation.
+
+\begin{center}
+\begin{tabular}{@{}p{3.6in}cc@{}}
+\toprule
+Statement & List ADT & Array-based \\
+\midrule
+Every element has a position in the sequence & \cb{1} & \cb{0} \\
+After \lstinline|add(pos, e)|, the elements previously at position pos and after it are one position higher & \cb{1} & \cb{0} \\
+\lstinline|get(pos)| takes constant time & \cb{0} & \cb{1} \\
+The list has a capacity, which can be larger than its size & \cb{0} & \cb{1} \\
+The elements are stored in consecutive memory cells & \cb{0} & \cb{1} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{question}
+
+\begin{question}
+An array-based list doubles the capacity of its array whenever it appends to a full array.
+Mark each statement as true or false.
+
+\begin{center}
+\begin{tabular}{@{}p{4in}cc@{}}
+\toprule
+Statement & True & False \\
+\midrule
+A single call to \lstinline|add(e)| on a list of N elements can take time proportional to N & \cb{1} & \cb{0} \\
+Every call to \lstinline|add(e)| takes O(1) time & \cb{0} & \cb{1} \\
+Any sequence of M calls to \lstinline|add(e)|, starting from an empty list, takes O(M) time in total & \cb{1} & \cb{0} \\
+O(1) amortized means O(1) on average, over random inputs & \cb{0} & \cb{1} \\
+Starting from an empty list of capacity 1, 1000 calls to \lstinline|add(e)| copy fewer than 2000 elements in total & \cb{1} & \cb{0} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{question}
+
+\begin{question}
+What does the following code fragment print?
+
+\begin{lstlisting}
+List<String> words = new ArrayList<>(List.of("red", "green", "blue"));
+Iterator<String> a = words.iterator();
+a.next();
+a.next();
+Iterator<String> b = words.iterator();
+System.out.print(b.next() + " " + a.next() + " ");
+System.out.print(a.hasNext());
+\end{lstlisting}
+
+Answer: \underline{\hspace{1.5in}} \ifanswers (red blue false)\fi
+\end{question}
+
+\begin{question}
+(2 points) The array \lstinline|{5, 8, 3, 9, 2, 7, 1, 6}| is sorted with quicksort, using the \textbf{first} element of each subarray as the pivot.
+Each partition puts every element smaller than the pivot to its left and every larger element to its right, preserving the relative order of the elements that end up on each side.
+Write the contents of the array after each partition.
+
+\ifanswers
+\begin{verbatim}
+pivot 5:  [3 2 1 5 8 9 7 6]
+pivot 3:  [2 1 3 5 8 9 7 6]
+pivot 2:  [1 2 3 5 8 9 7 6]
+pivot 8:  [1 2 3 5 7 6 8 9]
+pivot 7:  [1 2 3 5 6 7 8 9]
+\end{verbatim}
+\else
+\vspace{3in}
+\fi
+\end{question}

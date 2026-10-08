@@ -1,0 +1,61 @@
+% Shared preamble for CS102 quizzes.
+% \quiznum (set by the wrapper) is the number in the page header.
+% \ifanswers controls whether \cb{1} shows as checked and \ifanswers{...} text
+% renders. The build script's wrapper files set it explicitly with
+% \answerstrue / \answersfalse after \input-ing this preamble.
+
+\documentclass[11pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{parskip}
+
+\newif\ifanswers
+\answerstrue
+
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\fancyhead[L]{CSCI-102 Data Structures - Fall 26 - Quiz \quiznum}
+\fancyhead[R]{NetID: \underline{\hspace{1.6in}}}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+\lstdefinestyle{java}{
+  language=Java,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue!55!black}\bfseries,
+  commentstyle=\color{green!40!black}\itshape,
+  stringstyle=\color{orange!70!black},
+  showstringspaces=false,
+  breaklines=true,
+  backgroundcolor=\color{black!5},
+  frame=none,
+  xleftmargin=1em,
+  framexleftmargin=1em,
+  columns=fullflexible,
+}
+\lstset{style=java}
+
+% \cb{1} = correct answer (renders checked only when answers are on), \cb{0} = incorrect
+\newcommand{\cb}[1]{\ifanswers\ifnum#1=1 $\boxtimes$\else$\square$\fi\else$\square$\fi}
+
+\newcounter{qnum}
+\newenvironment{question}{%
+  \par\noindent
+  \stepcounter{qnum}%
+  \begin{minipage}{\linewidth}
+  \noindent\textbf{\theqnum.}\enskip\ignorespaces
+}{%
+  \end{minipage}\par
+  \bigskip
+  \begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
+  \bigskip
+}
+
+\newcommand{\fullname}{Full Name: \underline{\hspace{4in}}\par\bigskip}

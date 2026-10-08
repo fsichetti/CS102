@@ -1,0 +1,239 @@
+\fullname
+
+The quiz contains 11 questions. Each is worth 1 point and the score is out of 10 (so you still get max points if you get one wrong).
+
+One handwritten A6 (or 4x6 index card) cheat sheet allowed, no printed material.
+Remember that your electronic devices should be silent and put away in your bag at all times.
+
+\bigskip
+\begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
+\bigskip
+
+\begin{question}
+Two algorithms A and B perform the same task. Algorithm A has an asymptotic performance
+of O(NlogN). Algorithm B has an asymptotic performance of O(N\textasciicircum2).
+Assume that both algorithms are executed with the same inputs on the same computer and their exact running times are measured.
+
+Which of the following are true (select one or more):
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] algorithm A is always faster than algorithm B
+\item[\cb{0}] algorithm B is always faster than algorithm A
+\item[\cb{1}] algorithm A is faster than algorithm B for large enough N
+\item[\cb{0}] algorithm A is faster than algorithm B for small enough N
+\item[\cb{0}] algorithm B is faster than algorithm A for small enough N
+\end{itemize}
+\end{question}
+
+\begin{question}
+Below is a list of properties that can be attributed to either abstract classes or interfaces. Mark the corresponding boxes (the answer can also be both or neither).
+
+\begin{center}
+\begin{tabular}{@{}p{3.4in}cc@{}}
+\toprule
+Property & Abstract class & Interface \\
+\midrule
+A class that implements it can implement others too & \cb{0} & \cb{1} \\
+It can contain a private variable & \cb{1} & \cb{0} \\
+It can be instantiated & \cb{0} & \cb{0} \\
+You can create variables of its type & \cb{1} & \cb{1} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{question}
+
+\begin{question}
+What does the following code fragment print, assuming that code blocks A and B do not print nor throw any exceptions?
+
+\begin{lstlisting}
+// code block A
+try {
+   // code block B
+}
+catch(IllegalArgumentException e)     {
+   System.out.print("illegal ");
+}
+catch(Exception d)  {
+   System.out.print("exception ");
+}
+System.out.print("after ");
+\end{lstlisting}
+
+Answer: \underline{\hspace{1in}} \ifanswers (after)\fi
+\end{question}
+
+\begin{question}
+Assume that the following array starts at the memory location 100 (expressed in decimal for easier calculations).
+
+\begin{lstlisting}
+double [] array = new double[10];
+\end{lstlisting}
+
+Hint: the size of a double is 8 bytes.
+Is there a way to know what the memory address of array[3] is, and if so what is it?
+
+Answer: \underline{\hspace{1in}} \ifanswers (124)\fi
+\end{question}
+
+\begin{question}
+Assume that a Circle class exists and it has a one parameter constructor that takes radius as its parameter. How many Circle objects are created when the following code fragment is executed?
+
+\begin{lstlisting}
+Circle c1 = new Circle(3);
+Circle c2 = new Circle(3);
+Circle c3 = c1;
+\end{lstlisting}
+
+Answer: \underline{\hspace{1in}} \ifanswers (2)\fi
+\end{question}
+
+\begin{question}
+Assume the following function definition
+
+\begin{lstlisting}
+void mySwap( int d1, int d2 ) {
+    int tmp;
+    tmp = d1;
+    d1 = d2;
+    d2 = tmp;
+}
+\end{lstlisting}
+
+What is the output of the following code fragment?
+
+\begin{lstlisting}
+int x = 3;
+int y = 7;
+mySwap(x,y);
+System.out.println(x + ", " + y );
+\end{lstlisting}
+
+Assume that the above code fragment and function compile in whatever program they are embedded in.
+
+Answer: \underline{\hspace{1in}} \ifanswers (3, 7)\fi
+\end{question}
+
+\begin{question}
+You run an implementation of binary search on a sorted array of 100 elements, searching for an element that is not in the array. Your implementation went through 7 levels of recursion.
+How many levels of recursion would you go through if the input size was 400 elements, and the element was still not in the array?
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] 7
+\item[\cb{1}] 9
+\item[\cb{0}] 11
+\item[\cb{0}] 14
+\item[\cb{0}] 700
+\item[\cb{0}] It is impossible to know
+\end{itemize}
+\end{question}
+
+\begin{question}
+What is printed to the console when the Main class is executed?
+
+\begin{lstlisting}
+public class A extends B {
+    public String toString() {
+        return "A";
+    }
+}
+
+public class B {
+    public String toString() {
+        return "B";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        B b = new A();
+        A a = new A();
+        System.out.print(b);
+        System.out.print(a);
+    }
+}
+\end{lstlisting}
+
+Answer: \underline{\hspace{1in}} \ifanswers (AA)\fi
+\end{question}
+
+\begin{question}
+Consider the following program
+
+\begin{lstlisting}
+public class StackExample {
+  public static void main (String [] args ) {
+      foo () ;
+  }
+  public static void foo (){
+      bar( 15 );
+      car( 8 );    //  <===
+  }
+  public static void bar ( int x ) {
+      bat(x);
+  }
+  public static void car ( int x ) {
+      bar(x);
+  }
+  public static void bat ( int x ) {
+      System.out.println("hello");
+  }
+}
+\end{lstlisting}
+
+At the time that function car() is called (at the place in the code indicated by the arrow), what is the total number of stack frames on the program's stack (including the stack frame for car())?
+
+Answer: \underline{\hspace{1in}} \ifanswers (3)\fi
+\end{question}
+
+\begin{question}
+Consider the following program, which sums all entries in an array using recursion instead of a for loop.
+
+\begin{lstlisting}
+int sumArray(int[] a) {
+    if (a == null) return 0;
+    return sumArrayRec(a, 0);
+}
+
+int sumArrayRec(int[] a, int i) {
+    if (i >= a.length) return 0;
+    return a[i] + sumArrayRec(a, i+1);
+}
+\end{lstlisting}
+
+What is the algorithmic complexity of sumArray, with respect to the size of the array?
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] constant time
+\item[\cb{0}] logarithmic time
+\item[\cb{1}] linear time
+\item[\cb{0}] linearithmic time
+\item[\cb{0}] quadratic time
+\end{itemize}
+\end{question}
+
+\begin{question}
+A palindrome is a string that reads the same forwards and backwards, for example ``madam''.
+
+The following recursive function determines if a string is a palindrome or not.
+Complete the missing line, so that the function works correctly.
+
+\begin{lstlisting}
+boolean isPalindrome (String str) {
+    if (str == null) return false;
+    return isPalindrome(str, 0, str.length()-1);
+}
+
+boolean isPalindrome(String str, int first, int last) {
+    if (first >= last) return true;
+    if (str.charAt(first) == str.charAt(last))
+        return isPalindrome(___);
+    return false;
+}
+\end{lstlisting}
+
+Answer:
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] \lstinline|str.substring(1,str.length()-1), first, last|
+\item[\cb{0}] \lstinline|str, first + 1, last|
+\item[\cb{1}] \lstinline|str, first + 1, last - 1|
+\item[\cb{0}] \lstinline|str.substring(1,str.length()-1), first + 1, last - 1|
+\item[\cb{0}] \lstinline|str, first, last - 1|
+\end{itemize}
+\end{question}

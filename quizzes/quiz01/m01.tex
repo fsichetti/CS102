@@ -1,0 +1,206 @@
+{\Large\bfseries Mockup\par}
+\bigskip
+
+\fullname
+
+Practice quiz: 10 questions, similar style and topics to the real quiz. The questions here may be a tiny bit harder than those of the real quiz, but you should be able to solve this in 30 minutes.
+
+One handwritten A6 (or 4x6 index card) cheat sheet allowed, no printed material.
+Remember that your electronic devices should be silent and put away in your bag at all times.
+
+\bigskip
+\begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
+\bigskip
+
+\begin{question}
+Array \texttt{a} has length M, array \texttt{b} has length N. The \texttt{linearSearch(arr, key)} function finds the index of element \texttt{key} in \texttt{arr} via linear search.
+
+\begin{lstlisting}
+for (int i = 0; i < N; i++) {
+    linearSearch(a, b[i]);
+}
+\end{lstlisting}
+
+What is the algorithmic complexity of this code, with respect to N and M?
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] O(1)
+\item[\cb{0}] O(N)
+\item[\cb{0}] O(N + M)
+\item[\cb{1}] O(N * M)
+\item[\cb{0}] O(N\textasciicircum2 * M\textasciicircum2)
+\end{itemize}
+\end{question}
+
+\begin{question}
+Below is a list of properties that can be attributed to either overloading or overriding. Mark the corresponding box (exactly one per row).
+
+\begin{tabular}{@{}p{3.4in}cc@{}}
+\toprule
+Property & Overloading & Overriding \\
+\midrule
+Refers to methods with identical name, but different parameter list & \cb{1} & \cb{0} \\
+Refers to methods with identical name, and same parameter list & \cb{0} & \cb{1} \\
+Requires a subclass and a superclass & \cb{0} & \cb{1} \\
+Resolved at compile time, based on the declared type of the arguments & \cb{1} & \cb{0} \\
+\bottomrule
+\end{tabular}
+\end{question}
+
+\begin{question}
+What is the output of the following code fragment, assuming that code block A does not cause any exceptions, and code block B throws an instance of a NullPointerException?
+
+\begin{lstlisting}
+// code block A
+try {
+   // code block B
+}
+catch(IllegalArgumentException e)     {
+   System.out.print("illegal ");
+}
+catch(Exception d)  {
+   System.out.print("exception ");
+}
+System.out.print("after ");
+\end{lstlisting}
+
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] illegal
+\item[\cb{0}] illegal exception
+\item[\cb{0}] illegal after
+\item[\cb{0}] illegal exception after
+\item[\cb{0}] exception
+\item[\cb{1}] exception after
+\item[\cb{0}] after
+\item[\cb{0}] none of the above
+\end{itemize}
+\end{question}
+
+\begin{question}
+Assume that the following array starts at the memory location 200 (expressed in decimal for easier calculations).
+
+\begin{lstlisting}
+int [] array = new int[8];
+\end{lstlisting}
+
+Hint: the size of an int is 4 bytes.
+Is there a way to know what the memory address of array[5] is, and if so what is it?
+
+Answer: \underline{\hspace{1in}} \ifanswers (220)\fi
+\end{question}
+
+\begin{question}
+Assume the following function definition
+
+\begin{lstlisting}
+void increment( int n ) {
+    n = n + 1;
+}
+\end{lstlisting}
+
+What is the output of the following code fragment?
+
+\begin{lstlisting}
+int x = 10;
+increment(x);
+System.out.println(x);
+\end{lstlisting}
+
+Answer: \underline{\hspace{1in}} \ifanswers (10)\fi
+\end{question}
+
+\begin{question}
+Consider the following program
+
+\begin{lstlisting}
+public class StackExample3 {
+  public static void main (String [] args ) {
+      one();
+  }
+  public static void one (){
+      two( 6 );
+      four( 2 );    //  <===
+  }
+  public static void two ( int x ) {
+      three(x);
+  }
+  public static void three ( int x ) {
+      System.out.println("three");
+  }
+  public static void four ( int x ) {
+      two(x);
+  }
+}
+\end{lstlisting}
+
+At the time that function four() is called (at the place in the code indicated by the arrow), what is the total number of stack frames on the program's stack (including the stack frame for four())?
+
+Answer: \underline{\hspace{1in}} \ifanswers (3)\fi
+\end{question}
+
+\begin{question}
+An algorithm iterates through an entire array of numbers (starting at index zero and advancing to the next index on each iteration) and it adds each array value to a variable called \texttt{sum}. What is the algorithmic complexity of that algorithm, with respect to the size of the array?
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] constant time
+\item[\cb{0}] logarithmic time
+\item[\cb{1}] linear time
+\item[\cb{0}] linearithmic time
+\item[\cb{0}] quadratic time
+\end{itemize}
+\end{question}
+
+\begin{question}
+You run an implementation of binary search on a sorted array of 320 elements, searching for an element that is not in the array. Your implementation went through 9 levels of recursion.
+How many levels of recursion would you go through if the input size was 40 elements, and the element was still not in the array?
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] 9
+\item[\cb{0}] 7
+\item[\cb{1}] 6
+\item[\cb{0}] 5
+\item[\cb{0}] 1
+\item[\cb{0}] It is impossible to know
+\end{itemize}
+\end{question}
+
+\begin{question}
+Finish the following program which computes the gcd of two numbers using the Euclidean algorithm.
+The algorithm works as follows, assuming a > b: repeatedly replace (a, b) with (b, a mod b) until b becomes 0; a is then the gcd.\\
+Hint: remember that ``a mod b'' is just the remainder of the long division of a by b.\\
+Hint: 2 to 4 lines depending on how you format your code.
+
+\ifanswers
+\begin{lstlisting}
+int gcd(int a, int b) {
+    if (b == 0) return a;
+    return gcd(b, a % b);
+}
+\end{lstlisting}
+\else
+\begin{lstlisting}
+int gcd(int a, int b) {
+
+
+
+
+}
+\end{lstlisting}
+\fi
+\end{question}
+
+\begin{question}
+Given the following generic class definition, which of the following statements does NOT compile?
+
+\begin{lstlisting}
+class Box<T> {
+    private T item;
+    public Box(T item) { this.item = item; }
+    public T getItem() { return item; }
+}
+\end{lstlisting}
+
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] \lstinline|Box<String> b = new Box<>("hi");|
+\item[\cb{0}] \lstinline|Box<Integer> b = new Box<>(5);|
+\item[\cb{1}] \lstinline|Box<int> b = new Box<>(5);|
+\item[\cb{0}] \lstinline|Box<Object> b = new Box<>("hi");|
+\end{itemize}
+\end{question}

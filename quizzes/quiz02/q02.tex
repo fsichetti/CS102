@@ -1,0 +1,203 @@
+\fullname
+
+The quiz contains 10 questions. Question 10 is worth 2 points, all others 1 point. The total is 11 points and the score is out of 10 (so you still get max points if you lose one point).
+
+One handwritten A6 (or 4x6 index card) cheat sheet allowed, no printed material.
+Remember that your electronic devices should be silent and put away in your bag at all times.
+
+\bigskip
+\begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
+\bigskip
+
+\begin{question}
+Two algorithms A and B perform the same task. Algorithm A has a worst-case complexity
+of O($N^3$). Algorithm B has a worst-case complexity of O($2^N$).
+Assume that both algorithms are executed with the same inputs on the same computer and their exact running times are measured.
+
+Which of the following are true (select one or more):
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{1}] there is a value $N_0$ such that algorithm A is faster than algorithm B for every $N>N_0$
+\item[\cb{0}] there is a value $N_0$ such that algorithm B is faster than algorithm A for every $N>N_0$
+\item[\cb{1}] it is possible that algorithm A is always faster than algorithm B for this specific problem
+\item[\cb{0}] algorithm B is faster than algorithm A for $N=2$
+\item[\cb{0}] there must exist some $N$ for which A and B are equally as fast
+\end{itemize}
+\end{question}
+
+\begin{question}
+Bubble sort is used to sort the array \lstinline|{5, 1, 4, 2, 8, 3}| in ascending order.
+Each pass goes through the array from left to right and swaps adjacent elements that are out of order.
+
+What does the array look like after the first two full passes?
+
+Answer: \underline{\hspace{2in}} \ifanswers (\{1, 2, 4, 3, 5, 8\})\fi
+\end{question}
+
+\begin{question}
+A sorting algorithm is \textbf{adaptive} if (select one):
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] equal elements keep their original relative order
+\item[\cb{1}] it runs faster on input that is already partly sorted
+\item[\cb{0}] it uses only O(1) extra memory
+\item[\cb{0}] it can sort any type that implements \lstinline|Comparable|
+\item[\cb{0}] it switches to a different algorithm for small subarrays
+\end{itemize}
+\end{question}
+
+\begin{question}
+Consider the following classes.
+
+\begin{lstlisting}
+class Student {
+    String name;
+    double gpa;
+    Student(String name, double gpa) { this.name = name; this.gpa = gpa; }
+}
+
+class ByGpa implements Comparator<Student> {
+    public int compare(Student a, Student b) {
+        return Double.compare(b.gpa, a.gpa);
+    }
+}
+\end{lstlisting}
+
+The array below is sorted with a \textbf{stable} sorting algorithm, using a \lstinline|ByGpa| object to compare elements.
+
+\begin{lstlisting}
+Student[] roster = { new Student("Ann", 3.2), new Student("Bo", 3.9),
+                     new Student("Cy", 2.8), new Student("Dee", 3.2) };
+\end{lstlisting}
+
+Hint: note the order of \lstinline|b.gpa| and \lstinline|a.gpa| in \lstinline|compare|, and remember that a sorting algorithm sorts things in ascending order.
+
+In which order are the names after sorting?
+
+Answer: \underline{\hspace{2in}} \ifanswers (Bo, Ann, Dee, Cy)\fi
+\end{question}
+
+\begin{question}
+The following method should sort an array in ascending order using insertion sort, but one line contains a bug.
+Which change fixes the method (select one)?
+
+Hint: you can simulate by hand what the method would do on a very small array to pin down which operation is buggy.
+
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,xleftmargin=2em]
+void insertionSort(int[] a) {
+    for (int i = 1; i < a.length; i++) {
+        int current = a[i];
+        int j = i - 1;
+        while (j >= 0 && a[j] > current) {
+            a[j] = a[j + 1];
+            j--;
+        }
+        a[j + 1] = current;
+    }
+}
+\end{lstlisting}
+
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] line 2 becomes \lstinline|for (int i = 0; i < a.length; i++) {|
+\item[\cb{0}] line 3 becomes \lstinline|int current = a[i - 1];|
+\item[\cb{0}] line 5 becomes \lstinline|while (j >= 0 && a[j] < current) {|
+\item[\cb{1}] line 6 becomes \lstinline|a[j + 1] = a[j];|
+\item[\cb{0}] line 9 becomes \lstinline|a[j] = current;|
+\end{itemize}
+\end{question}
+
+\begin{question}
+What does the following code fragment print?
+
+Hint: this code compiles and runs without errors, and the last line will just print the list elements in square brackets and separated by commas.
+
+Hint: write down the state of the list after each call on scrap paper.
+
+\begin{lstlisting}
+List<String> list = new ArrayList<>();
+list.add("a");
+list.add("b");
+list.add("c");
+list.add("d");
+list.add(1, "e");
+list.remove(3);
+list.add(list.size(), "f");
+list.set(0, list.get(2));
+System.out.println(list);
+\end{lstlisting}
+
+Answer: \underline{\hspace{2in}} \ifanswers ([b, e, b, d, f])\fi
+\end{question}
+
+\begin{question}
+The following method of an array-based list of \lstinline|double|s removes and returns the element at position \lstinline|pos|, moving the elements after it down by one position.
+\lstinline|data| is the array holding the elements and \lstinline|size| is the number of elements in the list.
+Complete the missing line, so that the method works correctly.
+
+\begin{lstlisting}
+double remove(int pos) {
+    if (pos < 0 || pos >= size) throw new IndexOutOfBoundsException();
+    double removed = data[pos];
+    for (int i = pos; i < size - 1; i++)
+        ___
+    size--;
+    return removed;
+}
+\end{lstlisting}
+
+Answer:
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{1}] \lstinline|data[i] = data[i + 1];|
+\item[\cb{0}] \lstinline|data[i + 1] = data[i];|
+\item[\cb{0}] \lstinline|data[i] = data[i - 1];|
+\item[\cb{0}] \lstinline|data[pos] = data[i + 1];|
+\item[\cb{0}] \lstinline|data[i] = data[size - 1];|
+\end{itemize}
+\end{question}
+
+\begin{question}
+Appending an element to a \lstinline|java.util.ArrayList| with \lstinline|add(e)| takes O(1) \textbf{amortized} time. This means that (select one):
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] every call to \lstinline|add(e)| takes O(1) time in the worst case
+\item[\cb{0}] a call to \lstinline|add(e)| takes O(1) time on average, over random inputs
+\item[\cb{1}] any sequence of M calls to \lstinline|add(e)|, starting from an empty list, takes O(M) time in total
+\item[\cb{0}] a call to \lstinline|add(e)| takes O(1) time as long as the list has fewer than some fixed number of elements
+\item[\cb{0}] the cost of a single call to \lstinline|add(e)| does not depend on the capacity of the array
+\end{itemize}
+\end{question}
+
+\begin{question}
+\lstinline|arraylist| is a \lstinline|java.util.ArrayList| containing N elements, and the following method is called on it.
+
+\begin{lstlisting}
+void process(ArrayList<Integer> arraylist) {
+    arraylist.add(0, -1);
+    for (int i = 0; i < arraylist.size(); i++)
+        arraylist.set(i, arraylist.get(i) * 2);
+    while (arraylist.size() > 0)
+        arraylist.remove(arraylist.size() - 1);
+}
+\end{lstlisting}
+
+What is the worst-case complexity of \lstinline|process|, as a function of N?
+
+Answer: \underline{\hspace{1in}} \ifanswers (O(N): \lstinline|add(0, -1)| is O(N) once, the loops do N+1 iterations of O(1) operations each, since \lstinline|get|, \lstinline|set| and removing the last element are O(1))\fi
+\end{question}
+
+\begin{question}
+(2 points) Draw how merge sort sorts the array \lstinline|{8, 3, 5, 1, 7, 2, 6, 4}|:
+every split, down to subarrays of one element, and every merge, up to the sorted array.
+Write the content of each subarray.
+
+\ifanswers
+\begin{verbatim}
+           [8 3 5 1 7 2 6 4]
+       [8 3 5 1]       [7 2 6 4]
+     [8 3]   [5 1]   [7 2]   [6 4]
+    [8] [3] [5] [1] [7] [2] [6] [4]
+     [3 8]   [1 5]   [2 7]   [4 6]
+       [1 3 5 8]       [2 4 6 7]
+           [1 2 3 4 5 6 7 8]
+\end{verbatim}
+\else
+\vspace{3in}
+\fi
+\end{question}

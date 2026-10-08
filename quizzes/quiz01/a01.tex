@@ -1,0 +1,240 @@
+\fullname
+
+The quiz contains 11 questions. Each is worth 1 point and the score is out of 10 (so you still get max points if you get one wrong).
+
+One handwritten A6 (or 4x6 index card) cheat sheet allowed, no printed material.
+Remember that your electronic devices should be silent and put away in your bag at all times.
+
+\bigskip
+\begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
+\bigskip
+
+\begin{question}
+Two algorithms A and B perform the same task. Algorithm A has an asymptotic performance
+of O(N). Algorithm B has an asymptotic performance of O(NlogN).
+Assume that both algorithms are executed with the same inputs on the same computer and their exact running times are measured.
+
+Which of the following are true (select one or more):
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] algorithm A is always faster than algorithm B
+\item[\cb{0}] algorithm B is always faster than algorithm A
+\item[\cb{1}] algorithm A is faster than algorithm B for large enough N
+\item[\cb{0}] algorithm A is faster than algorithm B for small enough N
+\item[\cb{0}] algorithm B is faster than algorithm A for small enough N
+\end{itemize}
+\end{question}
+
+\begin{question}
+Below is a list of properties that can be attributed to either stack memory or heap memory. Mark the corresponding boxes (the answer can also be both or neither).
+
+\begin{center}
+\begin{tabular}{@{}p{3.4in}cc@{}}
+\toprule
+Property & Stack memory & Heap memory \\
+\midrule
+Stores local variables and method parameters & \cb{1} & \cb{0} \\
+Stores objects created with \texttt{new} & \cb{0} & \cb{1} \\
+Automatically freed when a method returns & \cb{1} & \cb{0} \\
+Freed by the garbage collector & \cb{0} & \cb{1} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{question}
+
+\begin{question}
+What does the following code fragment print, assuming that code blocks A and B do not print nor throw any exceptions?
+
+\begin{lstlisting}
+// code block A
+try {
+   // code block B
+}
+catch(ArithmeticException e)     {
+   System.out.print("arithmetic ");
+}
+catch(RuntimeException d)  {
+   System.out.print("runtime ");
+}
+System.out.print("done ");
+\end{lstlisting}
+
+Answer: \underline{\hspace{1in}} \ifanswers (done)\fi
+\end{question}
+
+\begin{question}
+Assume that the following array starts at the memory location 300 (expressed in decimal for easier calculations).
+
+\begin{lstlisting}
+long [] array = new long[8];
+\end{lstlisting}
+
+Hint: the size of a long is 8 bytes.
+Is there a way to know what the memory address of array[6] is, and if so what is it?
+
+Answer: \underline{\hspace{1in}} \ifanswers (348)\fi
+\end{question}
+
+\begin{question}
+Assume that a Rectangle class exists and it has a one parameter constructor that takes side length as its parameter. How many Rectangle objects are created when the following code fragment is executed?
+
+\begin{lstlisting}
+Rectangle r1 = new Rectangle(4);
+Rectangle r2 = r1;
+Rectangle r3 = new Rectangle(4);
+Rectangle r4 = new Rectangle(4);
+r2 = r3;
+\end{lstlisting}
+
+Answer: \underline{\hspace{1in}} \ifanswers (3)\fi
+\end{question}
+
+\begin{question}
+Assume the following function definition
+
+\begin{lstlisting}
+void mySwapVals( int p, int q ) {
+    int temp;
+    temp = p;
+    p = q;
+    q = temp;
+}
+\end{lstlisting}
+
+What is the output of the following code fragment?
+
+\begin{lstlisting}
+int m = 5;
+int n = 9;
+mySwapVals(m, n);
+System.out.println(m + ", " + n );
+\end{lstlisting}
+
+Assume that the above code fragment and function compile in whatever program they are embedded in.
+
+Answer: \underline{\hspace{1in}} \ifanswers (5, 9)\fi
+\end{question}
+
+\begin{question}
+You run an implementation of binary search on a sorted array of 40 elements, searching for an element that is not in the array. Your implementation went through 6 levels of recursion.
+How many levels of recursion would you go through if the input size was 80 elements, and the element was still not in the array?
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] 6
+\item[\cb{1}] 7
+\item[\cb{0}] 8
+\item[\cb{0}] 12
+\item[\cb{0}] 240
+\item[\cb{0}] It is impossible to know
+\end{itemize}
+\end{question}
+
+\begin{question}
+What is printed to the console when the Main class is executed?
+
+\begin{lstlisting}
+public class X extends Y {
+    public String toString() {
+        return "X";
+    }
+}
+
+public class Y {
+    public String toString() {
+        return "Y";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Y y = new X();
+        X x = new X();
+        System.out.print(y);
+        System.out.print(x);
+    }
+}
+\end{lstlisting}
+
+Answer: \underline{\hspace{1in}} \ifanswers (XX)\fi
+\end{question}
+
+\begin{question}
+Consider the following program
+
+\begin{lstlisting}
+public class StackExample2 {
+  public static void main (String [] args ) {
+      p();
+  }
+  public static void p (){
+      q( 4 );
+      r( 4 );
+  }
+  public static void q ( int x ) {
+      s(x);    //  <===
+  }
+  public static void r ( int x ) {
+      q(x);
+  }
+  public static void s ( int x ) {
+      System.out.println("hi");
+  }
+}
+\end{lstlisting}
+
+At the time that function s() is called (at the place in the code indicated by the arrow), what is the total number of stack frames on the program's stack (including the stack frame for s())?
+
+Answer: \underline{\hspace{1in}} \ifanswers (4)\fi
+\end{question}
+
+\begin{question}
+Consider the following program, which finds the maximum value in an array using recursion instead of a for loop.
+
+\begin{lstlisting}
+int arrayMax(int[] a) {
+    if (a == null || a.length == 0) return Integer.MIN_VALUE;
+    return arrayMaxRec(a, 0);
+}
+
+int arrayMaxRec(int[] a, int i) {
+    if (i == a.length - 1) return a[i];
+    int rest = arrayMaxRec(a, i + 1);
+    return a[i] > rest ? a[i] : rest;
+}
+\end{lstlisting}
+
+What is the algorithmic complexity of arrayMax, with respect to the size of the array?
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] constant time
+\item[\cb{0}] logarithmic time
+\item[\cb{1}] linear time
+\item[\cb{0}] linearithmic time
+\item[\cb{0}] quadratic time
+\end{itemize}
+\end{question}
+
+\begin{question}
+The following recursive function determines whether every character in a string is the same, for example ``aaaa'', but not ``abab'' or ``aab''.
+Complete the missing line, so that the function works correctly.
+
+\begin{lstlisting}
+boolean allSame (String str) {
+    if (str == null) return true;
+    return allSame(str, 0);
+}
+
+boolean allSame(String str, int i) {
+    if (i >= str.length() - 1) return true;
+    if (str.charAt(i) == str.charAt(i+1))
+        return allSame(___);
+    return false;
+}
+\end{lstlisting}
+
+Answer:
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] \lstinline|str, i|
+\item[\cb{1}] \lstinline|str, i + 1|
+\item[\cb{0}] \lstinline|str, i - 1|
+\item[\cb{0}] \lstinline|str.substring(1), i|
+\item[\cb{0}] \lstinline|str.substring(1), i + 1|
+\end{itemize}
+\end{question}
