@@ -34,6 +34,6 @@ classes/*
 projects/ideas
 
 !**/instructions.pdf
-!quizzes/output/*
+!quizzes/quiz*/*.pdf
 
 CLAUDE.md

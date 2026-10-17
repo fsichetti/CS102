@@ -1,0 +1,218 @@
+\fullname
+
+The quiz contains 10 questions. Question 10 is worth 2 points, all others 1 point. The total is 11 points and the score is out of 10 (so you still get max points if you lose one point).
+
+One handwritten A6 (or 4x6 index card) cheat sheet allowed, no printed material.
+Remember that your electronic devices should be silent and put away in your bag at all times.
+
+\bigskip
+\begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
+\bigskip
+
+\begin{question}
+In the statements below, $N$ is the size of the input, complexities are worst-case, and all algorithms solve the same problem and run on the same computer.
+
+Exactly \textbf{2} of the following statements are true. Select them.
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] an exponential-time algorithm does more operations than a polynomial-time algorithm, for any $N$
+\item[\cb{1}] for $N$ large enough, an $O(N)$ algorithm is faster than an $O(N^2)$ algorithm
+\item[\cb{0}] a linear-time algorithm always does at least $N$ operations on an input of size $N$
+\item[\cb{0}] if the size of my input is fixed, I can pick the fastest algorithm for my problem just by looking at their complexity classes
+\item[\cb{1}] an $O(N^2)$ algorithm can be faster than an $O(N)$ algorithm on an input of size $N = 1000$
+\end{itemize}
+\end{question}
+
+\begin{question}
+\lstinline|list| is an empty list, which can be either a \lstinline|java.util.ArrayList| or a \lstinline|java.util.LinkedList|, and \lstinline|N| is a positive integer.
+
+\begin{lstlisting}
+for (int i = 0; i < N; i++)
+    list.add(list.size() / 2, i);
+\end{lstlisting}
+
+Which implementation gives the lowest worst-case number of operations for this code (select one)? Then write that complexity as a function of $N$.
+
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] \lstinline|ArrayList|
+\item[\cb{0}] \lstinline|LinkedList|
+\item[\cb{1}] both have the same complexity
+\end{itemize}
+
+Complexity: $O($\underline{\hspace{1in}}$)$ \ifanswers ($N^2$)\fi
+\end{question}
+
+\begin{question}
+In a doubly linked list (nodes with fields \lstinline|data|, \lstinline|prev| and \lstinline|next|), \lstinline|after| refers to a node that is not the first one.
+\lstinline|n| refers to a new node, with \lstinline|n.prev == null| and \lstinline|n.next == null|.
+
+The four lines below insert \lstinline|n| between the node before \lstinline|after| and \lstinline|after|, so that the list is correct in both directions, but they are in the wrong order.
+Write the numbers 1 to 4 in the boxes to give the order in which they must be executed.
+
+\medskip
+\begin{tabular}{@{}l@{\quad}l@{}}
+\ansbox{2} & \lstinline|n.next = n.prev.next;| \\[3pt]
+\ansbox{3} & \lstinline|after.prev.next = n;| \\[3pt]
+\ansbox{4} & \lstinline|after.prev = n;| \\[3pt]
+\ansbox{1} & \lstinline|n.prev = after.prev;| \\
+\end{tabular}
+\end{question}
+
+\begin{question}
+Consider the usual implementation of a singly-linked list \lstinline|Node|.
+
+\begin{lstlisting}
+class Node {
+    int data;
+    Node next;
+    Node(int data) { this.data = data; }
+}
+\end{lstlisting}
+
+What does the following code fragment print?
+
+Hint: draw the nodes and the references on scrap paper, and update the drawing after each line.
+
+\begin{lstlisting}
+Node head = new Node(1);
+head.next = new Node(2);
+head.next.next = new Node(3);
+Node p = head.next;
+Node q = new Node(4);
+q.next = p.next;
+p.next = q;
+head = head.next;
+p.data = 5;
+for (Node cur = head; cur != null; cur = cur.next)
+    System.out.print(cur.data + " ");
+\end{lstlisting}
+
+Answer: \underline{\hspace{2in}} \ifanswers (5 4 3)\fi
+\end{question}
+
+\begin{question}
+The following method of a doubly linked list removes and returns the last element.
+\lstinline|head| and \lstinline|tail| refer to the first and the last node (\lstinline|null| if the list is empty), and \lstinline|size| is the number of elements.
+Complete the missing line, so that the method works correctly.
+
+\begin{lstlisting}
+public double removeLast() {
+    if (tail == null) throw new NoSuchElementException("empty list");
+    double removed = tail.data;
+    ___
+    if (tail == null) head = null;
+    else tail.next = null;
+    size--;
+    return removed;
+}
+\end{lstlisting}
+
+Answer:
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] \lstinline|tail = null;|
+\item[\cb{0}] \lstinline|tail = tail.next;|
+\item[\cb{0}] \lstinline|tail.prev = tail;|
+\item[\cb{1}] \lstinline|tail = tail.prev;|
+\item[\cb{0}] \lstinline|tail.prev.next = null;|
+\end{itemize}
+\end{question}
+
+\begin{question}
+\lstinline|list| is a \lstinline|java.util.ArrayList| or a \lstinline|java.util.LinkedList| containing $N$ elements, and \lstinline|it| is an iterator over \lstinline|list| on which \lstinline|next()| was just called.
+Costs are worst-case.
+
+Exactly \textbf{2} of the following operations are $O(N)$ on an \lstinline|ArrayList| but $O(1)$ on a \lstinline|LinkedList|. Select them.
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] read the element at a given position
+\item[\cb{1}] add an element at the beginning
+\item[\cb{0}] find the position of a given element
+\item[\cb{1}] remove, through \lstinline|it|, the element that \lstinline|next()| just returned
+\item[\cb{0}] remove the last element
+\end{itemize}
+\end{question}
+
+\begin{question}
+\lstinline|list| contains $N$ elements, and the following method is called on it.
+
+\begin{lstlisting}
+void fill(List<Integer> list, int N) {
+    list.clear();
+    for (int i = 0; i < N; i++)
+        list.add(0, i);
+}
+\end{lstlisting}
+
+What is the worst-case complexity of \lstinline|fill|, as a function of $N$, when \lstinline|list| is a \lstinline|java.util.ArrayList|? And when it is a \lstinline|java.util.LinkedList|?
+
+\lstinline|ArrayList|: \underline{\hspace{1in}} \ifanswers ($O(N^2)$: \lstinline|clear()| is $O(N)$, but each \lstinline|add(0, i)| shifts all elements)\fi \qquad
+\lstinline|LinkedList|: \underline{\hspace{1in}} \ifanswers ($O(N)$: \lstinline|clear()| and each \lstinline|add(0, i)| are $O(N)$ and $O(1)$)\fi
+\end{question}
+
+\begin{question}
+\lstinline|list| is a doubly linked list of \lstinline|Integer|s with $N$ elements.
+It has the fields \lstinline|head| and \lstinline|size|, its nodes have the fields \lstinline|data|, \lstinline|prev| and \lstinline|next|, and it supports \lstinline|get(i)|, \lstinline|iterator()| and \lstinline|descendingIterator()|.
+
+Each of the following loops prints all the elements of \lstinline|list|.
+Select all those that run in $O(N)$ time in the worst case.
+
+\begin{itemize}[leftmargin=2em,itemsep=4pt,topsep=2pt]
+\item[\cb{0}] \lstinline|for (int i = 0; i < list.size(); i++)|\\
+\hspace*{2em}\lstinline|System.out.print(list.get(i) + " ");|
+\item[\cb{1}] \lstinline|for (Node cur = list.head; cur != null; cur = cur.next)|\\
+\hspace*{2em}\lstinline|System.out.print(cur.data + " ");|
+\item[\cb{1}] \lstinline|for (Iterator<Integer> it = list.iterator(); it.hasNext(); )|\\
+\hspace*{2em}\lstinline|System.out.print(it.next() + " ");|
+\item[\cb{1}] \lstinline|for (Iterator<Integer> it = list.descendingIterator(); it.hasNext(); )|\\
+\hspace*{2em}\lstinline|System.out.print(it.next() + " ");|
+\end{itemize}
+\end{question}
+
+\begin{question}
+The following inner class of a singly linked list of \lstinline|double|s (fields \lstinline|head|, \lstinline|tail|, \lstinline|size|) is an iterator over its elements, from first to last.
+Write the last three lines of \lstinline|next()|, so that the iterator returns every element of the list exactly once, from first to last.
+
+\begin{lstlisting}
+private class Itr implements Iterator<Double> {
+    private Node current = head;    // node holding the next element to return
+
+    public boolean hasNext() { return current != null; }
+
+    public Double next() {
+        if (!hasNext()) throw new NoSuchElementException();
+        // write the three lines in the space below this block
+        // write the three lines in the space below this block
+        // write the three lines in the space below this block
+    }
+}
+\end{lstlisting}
+
+\ifanswers
+\begin{lstlisting}
+        double e = current.data;
+        current = current.next;
+        return e;
+\end{lstlisting}
+\else
+\vspace{1.2in}
+\fi
+\end{question}
+
+\begin{question}
+(2 points) The list \lstinline|[2, 4, 4]| is represented as a typical doubly linked list of \lstinline|Integer|s (without a sentinel node).
+Draw a picture of its representation in memory (including the \lstinline|LinkedList| object, all its \lstinline|Node|s, and the data contained by the nodes), with arrows representing references, including \lstinline|null| references.
+
+Hint: remember that the \lstinline|Integer| class is not a primitive type; it is an object that stores a single \lstinline|int| value.
+
+\ifanswers
+\begin{verbatim}
+LinkedList: head -> N1, tail -> N3, size = 3
+
+N1: prev null, data -> Integer(2), next -> N2
+N2: prev N1,   data -> Integer(4), next -> N3
+N3: prev N2,   data -> Integer(4), next null
+
+3 distinct Integer objects (the two 4s are separate objects)
+\end{verbatim}
+\else
+\vspace{3in}
+\fi
+\end{question}

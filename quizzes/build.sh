@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Regenerates the PDFs of one quiz folder into output/ (gitignored).
-# For each <folder>/<name>.tex, produces output/<name>.pdf (no answers, for students)
-# and output/<name>_key.pdf (answers shown, for the instructor).
+# Regenerates the PDFs of one quiz folder, next to their sources.
+# For each <folder>/<name>.tex, produces <folder>/<name>.pdf (no answers, for students)
+# and <folder>/<name>_key.pdf (answers shown, for the instructor).
 # The quiz number in the page header is the number in the folder name.
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -9,7 +9,6 @@ cd "$(dirname "$0")"
 dir=${1:?usage: build.sh <folder>   e.g. build.sh quiz02}
 dir=${dir%/}   # tab completion adds a trailing slash
 num=$(echo "$dir" | tr -dc 0-9 | sed 's/^0*//')
-mkdir -p output
 
 for file in "$dir"/*.tex; do
     name=$(basename "$file" .tex)
@@ -24,12 +23,12 @@ for file in "$dir"/*.tex; do
         [ "$variant" = "key" ] && jobname="${name}_key"
 
         for _ in 1 2; do
-            pdflatex -interaction=nonstopmode -output-directory=output \
+            pdflatex -interaction=nonstopmode -output-directory="$dir" \
                 -jobname="$jobname" "$wrapper" >/dev/null
         done
         rm -f "$wrapper"
     done
-    echo "$name: output/${name}.pdf (student), output/${name}_key.pdf (answer key)"
+    echo "$name: $dir/${name}.pdf (student), $dir/${name}_key.pdf (answer key)"
 done
 
-rm -f output/*.aux output/*.log output/*.out
+rm -f "$dir"/*.aux "$dir"/*.log "$dir"/*.out

@@ -44,6 +44,8 @@
 
 % \cb{1} = correct answer (renders checked only when answers are on), \cb{0} = incorrect
 \newcommand{\cb}[1]{\ifanswers\ifnum#1=1 $\boxtimes$\else$\square$\fi\else$\square$\fi}
+% \ansbox{k} = empty box to write a number in; shows k when answers are on
+\newcommand{\ansbox}[1]{\framebox[2em][c]{\rule{0pt}{1.6em}\ifanswers #1\fi}}
 
 \newcounter{qnum}
 \newenvironment{question}{%
