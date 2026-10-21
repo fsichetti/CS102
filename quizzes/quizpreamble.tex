@@ -1,5 +1,5 @@
-% Shared preamble for CS102 quizzes.
-% \quiznum (set by the wrapper) is the number in the page header.
+% Shared preamble for CS102 quizzes and exams.
+% \examlabel (set by the wrapper) is the label in the page header, e.g. "Quiz 4" or "Midterm".
 % \ifanswers controls whether \cb{1} shows as checked and \ifanswers{...} text
 % renders. The build script's wrapper files set it explicitly with
 % \answerstrue / \answersfalse after \input-ing this preamble.
@@ -21,7 +21,7 @@
 \pagestyle{fancy}
 \setlength{\headheight}{14pt}
 \fancyhf{}
-\fancyhead[L]{CSCI-102 Data Structures - Fall 26 - Quiz \quiznum}
+\fancyhead[L]{CSCI-102 Data Structures - Fall 26 - \examlabel}
 \fancyhead[R]{NetID: \underline{\hspace{1.6in}}}
 \renewcommand{\headrulewidth}{0pt}
 \fancyfoot[C]{\thepage}

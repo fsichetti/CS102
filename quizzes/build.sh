@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
-# Regenerates the PDFs of one quiz folder, next to their sources.
+# Regenerates the PDFs of one quiz (or exam) folder, next to their sources.
 # For each <folder>/<name>.tex, produces <folder>/<name>.pdf (no answers, for students)
 # and <folder>/<name>_key.pdf (answers shown, for the instructor).
-# The quiz number in the page header is the number in the folder name.
+# The page header reads "Quiz N" if the folder name contains a number (e.g. quiz04),
+# otherwise it reads "Midterm" (e.g. for a folder named "midterm").
 set -euo pipefail
 cd "$(dirname "$0")"
 
 dir=${1:?usage: build.sh <folder>   e.g. build.sh quiz02}
 dir=${dir%/}   # tab completion adds a trailing slash
 num=$(echo "$dir" | tr -dc 0-9 | sed 's/^0*//')
+label="Quiz $num"
+[ -z "$num" ] && label="Midterm"
 
 for file in "$dir"/*.tex; do
     name=$(basename "$file" .tex)
@@ -16,8 +19,8 @@ for file in "$dir"/*.tex; do
         wrapper="_wrapper_${name}_${variant}.tex"
         toggle="\\answerstrue"
         [ "$variant" = "student" ] && toggle="\\answersfalse"
-        printf '\\def\\quiznum{%s}\n\\input{quizpreamble}\n%s\n\\begin{document}\n\\input{%s}\n\\end{document}\n' \
-            "$num" "$toggle" "$dir/$name" > "$wrapper"
+        printf '\\def\\examlabel{%s}\n\\input{quizpreamble}\n%s\n\\begin{document}\n\\input{%s}\n\\end{document}\n' \
+            "$label" "$toggle" "$dir/$name" > "$wrapper"
 
         jobname="$name"
         [ "$variant" = "key" ] && jobname="${name}_key"
