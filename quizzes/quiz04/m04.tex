@@ -1,0 +1,216 @@
+{\Large\bfseries Mockup\par}
+\bigskip
+
+\fullname
+
+30 minutes, one handwritten or 4x6 index card (or A6) cheat sheet allowed, no printed material.
+
+\bigskip
+\begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
+\bigskip
+
+\begin{question}
+Consider the following code, where \lstinline|N| is a positive integer.
+
+\begin{lstlisting}
+/* dq is defined as below */
+for (int i = 0; i < N; i++)
+    dq.addFirst(i);
+while (!dq.isEmpty())
+    System.out.println(dq.removeLast());
+\end{lstlisting}
+
+Which definition of \lstinline|dq| gives the lowest worst-case number of operations for this code (select one)? Then write that complexity as a function of $N$.
+
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] \lstinline|Deque<Integer> dq = new ArrayDeque<>();|
+\item[\cb{0}] \lstinline|Deque<Integer> dq = new LinkedList<>();|
+\item[\cb{1}] both have the same complexity
+\end{itemize}
+
+Complexity: $O($\underline{\hspace{1in}}$)$ \ifanswers ($N$)\fi
+\end{question}
+
+\begin{question}
+The following lines are the body of \lstinline|removeLast()| for a circular-array deque (field \lstinline|data|, \lstinline|front|, \lstinline|size|; method \lstinline|index(i)| returns \lstinline|(front + i) % data.length|), but they are in the wrong order.
+The line \lstinline|return e;| is already placed correctly at the end; write the numbers 1 to 4 in the boxes for the remaining lines, to give the order in which they must be executed.
+
+\medskip
+\begin{tabular}{@{}l@{\quad}l@{}}
+\ansbox{4} & \lstinline|size--;| \\[3pt]
+\ansbox{2} & \lstinline|E e = data[last];| \\[3pt]
+\ansbox{3} & \lstinline|data[last] = null;| \\[3pt]
+\ansbox{1} & \lstinline|int last = index(size - 1);| \\
+\end{tabular}
+
+\medskip
+\lstinline|return e;|
+\end{question}
+
+\begin{question}
+What does the following code fragment print?
+
+\begin{lstlisting}
+Deque<Integer> in = new ArrayDeque<>();     // used as a stack
+Deque<Integer> out = new ArrayDeque<>();    // used as a stack
+
+in.push(8);
+in.push(3);
+if (out.isEmpty()) while (!in.isEmpty()) out.push(in.pop());
+in.push(6);
+System.out.print(out.pop() + " ");
+
+in.push(1);
+if (out.isEmpty()) while (!in.isEmpty()) out.push(in.pop());
+System.out.print(out.pop() + " ");
+
+if (out.isEmpty()) while (!in.isEmpty()) out.push(in.pop());
+System.out.print(out.pop() + " " + out.pop());
+\end{lstlisting}
+
+Answer: \underline{\hspace{2in}} \ifanswers (8 3 6 1: elements are moved to \lstinline|out| only when it is empty, so the oldest element is always on top of \lstinline|out|; two stacks emulate a queue)\fi
+\end{question}
+
+\begin{question}
+\lstinline|dq| is a \lstinline|Deque<Integer>|. Suppose you only ever add elements with \textbf{one} of its methods, and only ever remove them with \textbf{one} other method (always the same pair). For each pair below, mark whether it makes the deque behave like a \lstinline|Stack|, a \lstinline|Queue|, or neither.
+
+\begin{center}
+\begin{tabular}{@{}p{2.6in}ccc@{}}
+\toprule
+Add with / remove with & Stack & Queue & Neither \\
+\midrule
+\lstinline|push| / \lstinline|pop| & \cb{1} & \cb{0} & \cb{0} \\
+\lstinline|offer| / \lstinline|poll| & \cb{0} & \cb{1} & \cb{0} \\
+\lstinline|push| / \lstinline|pollLast| & \cb{0} & \cb{1} & \cb{0} \\
+\lstinline|offerLast| / \lstinline|pollLast| & \cb{1} & \cb{0} & \cb{0} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{question}
+
+\begin{question}
+Consider the following declarations.
+
+\begin{lstlisting}
+Queue<String> q = new LinkedList<>();
+Deque<String> d = new ArrayDeque<>();
+LinkedList<String> l = new LinkedList<>();
+\end{lstlisting}
+
+Mark the statements that compile (ignore what happens when they run).
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] \lstinline|q.get(0);|
+\item[\cb{1}] \lstinline|l.get(0);|
+\item[\cb{1}] \lstinline|d.pop();|
+\item[\cb{0}] \lstinline|q.pop();|
+\end{itemize}
+\end{question}
+
+\begin{question}
+The following method of a \lstinline|MyArrayDeque| adds an element at the front, but one line contains a bug.
+\lstinline|data| is the array, \lstinline|front| is the index of the first element, \lstinline|size| is the number of elements, \lstinline|grow()| doubles the capacity.
+Which change fixes the method (select one)?
+
+Hint: try it by hand on a deque where \lstinline|front| is already 0.
+
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,xleftmargin=2em]
+public void addFirst(E e) {
+    if (size == data.length) grow();
+    front = (front - 1) % data.length;
+    data[front] = e;
+    size++;
+}
+\end{lstlisting}
+
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] line 2 becomes \lstinline|if (size == data.length - 1) grow();|
+\item[\cb{1}] line 3 becomes \lstinline[keepspaces=true]|front = (front - 1 + data.length) % data.length;|
+\item[\cb{0}] line 3 becomes \lstinline|front = Math.abs(front - 1) % data.length;|
+\item[\cb{0}] line 4 becomes \lstinline[keepspaces=true]|data[front % data.length] = e;|
+\item[\cb{0}] line 5 becomes \lstinline[keepspaces=true]|size = size + 1 % data.length;|
+\end{itemize}
+\end{question}
+
+\begin{question}
+\lstinline|dq| is an \lstinline|ArrayDeque<Integer>| with $N$ elements.
+
+\begin{lstlisting}
+boolean isPalindrome(Deque<Integer> dq) {
+    while (dq.size() > 1) {
+        if (!dq.removeFirst().equals(dq.removeLast()))
+            return false;
+    }
+    return true;
+}
+\end{lstlisting}
+
+\lstinline|isPalindrome| checks whether the sequence of elements reads the same forwards and backwards (and empties \lstinline|dq| in the process). What is the worst-case complexity of \lstinline|isPalindrome|, as a function of $N$?
+
+Answer: \underline{\hspace{1in}} \ifanswers ($O(N)$: each iteration removes 2 elements in $O(1)$, so there are $O(N)$ iterations total)\fi
+\end{question}
+
+\begin{question}
+(2 points) A standard queue implementation of \lstinline|Integer|s, based on a circular array, starts empty with an initial capacity of 4 (its capacity doubles when it grows). The following operations are performed in order:
+
+\begin{lstlisting}
+q.enqueue(1);
+q.enqueue(2);
+q.enqueue(3);
+q.dequeue();
+q.dequeue();
+q.enqueue(4);
+q.enqueue(5);
+q.enqueue(6);
+q.enqueue(7);
+q.dequeue();
+\end{lstlisting}
+
+Draw the final state of the underlying array (every cell, whether it holds a reference to an \lstinline|Integer| object or none at all), the \lstinline|Integer| objects it references, and the final values of \lstinline|front| and \lstinline|size|.
+
+Hint: the array stores references to \lstinline|Integer| objects on the heap, not the integers directly.
+
+Hint: the cells that do not reference any object contain \lstinline|null|.
+
+\ifanswers
+\begin{verbatim}
+array (cells 0..7): [null, ref->4, ref->5, ref->6, ref->7, null, null, null]
+front = 1, size = 4
+(before the grow: [ref->5, ref->6, ref->3, ref->4], front = 2; the grow
+copies 3, 4, 5, 6 into cells 0..3 with front = 0, enqueue(7) goes to
+cell 4, and the last dequeue() removes 3)
+\end{verbatim}
+\else
+\vspace{2.5in}
+\fi
+\end{question}
+
+\begin{question}
+(2 points) Design a class \lstinline|TaskQueue| supporting \lstinline|enqueue(String name, String urgency)| (where \lstinline|urgency| is one of \lstinline|"Urgent"|, \lstinline|"Regular"|, \lstinline|"Relaxed"|) and \lstinline|dequeue()| (removes and returns the name of the next task to process).
+
+\lstinline|dequeue()| must always return an \lstinline|"Urgent"| task if any are waiting; otherwise a \lstinline|"Regular"| one if any are waiting; otherwise a \lstinline|"Relaxed"| one. Among tasks of the same urgency, they are processed in the order they were enqueued (FIFO).
+
+Describe your design, so that both \lstinline|enqueue| and \lstinline|dequeue| run in $O(1)$ time, regardless of how many tasks are waiting.
+
+\ifanswers
+\begin{verbatim}
+Keep three plain queues, one per urgency tier -- e.g. an array
+Queue<String>[] tiers = new Queue[3], indexed 0 = Urgent, 1 = Regular,
+2 = Relaxed (or three separate fields urgent/regular/relaxed; same idea).
+
+enqueue(name, urgency): offer name onto the one queue matching urgency.
+                        O(1): a single offer.
+
+dequeue(): check tiers[0], then tiers[1], then tiers[2], in that fixed
+           order, and poll from the first one that is not empty.
+           O(1): always exactly 3 isEmpty() checks and 1 poll, regardless
+           of how many tasks are waiting in each tier.
+
+Each tier preserves FIFO order on its own, and checking the tiers in a
+fixed urgency order (not depending on N) is what keeps dequeue O(1)
+instead of O(number of tiers with content) -- here that's a constant (3)
+either way, but the key idea is: don't scan or sort the tasks themselves.
+\end{verbatim}
+\else
+\vspace{2.5in}
+\fi
+\end{question}

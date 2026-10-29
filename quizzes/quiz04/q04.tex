@@ -1,0 +1,218 @@
+\fullname
+
+The quiz contains 9 questions. Questions 8 and 9 are worth 2 points each, all others 1 point. The total is 11 points and the score is out of 10 (so you still get max points if you lose one point).
+
+One handwritten A6 (or 4x6 index card) cheat sheet allowed, no printed material.
+Remember that your electronic devices should be silent and put away in your bag at all times.
+
+\bigskip
+\begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
+\bigskip
+
+\begin{question}
+\lstinline|Deque<E>| declares \lstinline|addFirst|, \lstinline|addLast|, \lstinline|removeFirst|, \lstinline|removeLast| (among others). Suppose you only ever add elements with \textbf{one} of these two methods, and only ever remove them with \textbf{one} of the other two (always the same pair). For each pair below, mark whether it makes the deque behave like a \lstinline|Stack|, a \lstinline|Queue|, or neither.
+
+\begin{center}
+\begin{tabular}{@{}p{2.6in}ccc@{}}
+\toprule
+Add with / remove with & Stack & Queue & Neither \\
+\midrule
+\lstinline|addFirst| / \lstinline|removeFirst| & \cb{1} & \cb{0} & \cb{0} \\
+\lstinline|addLast| / \lstinline|removeLast| & \cb{1} & \cb{0} & \cb{0} \\
+\lstinline|addLast| / \lstinline|removeFirst| & \cb{0} & \cb{1} & \cb{0} \\
+\lstinline|addFirst| / \lstinline|removeLast| & \cb{0} & \cb{1} & \cb{0} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{question}
+
+\begin{question}
+Consider the following code, where \lstinline|N| is a positive integer.
+
+\begin{lstlisting}
+/* q is defined as below */
+for (int i = 0; i < N; i++)
+    q.offer(i);
+while (!q.isEmpty())
+    System.out.println(q.poll());
+\end{lstlisting}
+
+Which definition of \lstinline|q| gives the lowest worst-case number of operations for this code (select one)? Then write that complexity as a function of $N$.
+
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] \lstinline|Queue<Integer> q = new ArrayDeque<>();|
+\item[\cb{0}] \lstinline|Queue<Integer> q = new LinkedList<>();|
+\item[\cb{1}] both have the same complexity
+\end{itemize}
+
+Complexity: $O($\underline{\hspace{1in}}$)$ \ifanswers ($N$)\fi
+\end{question}
+
+\begin{question}
+Consider the following declarations.
+
+\begin{lstlisting}
+Deque<Integer> d = new LinkedList<>();
+List<Integer> l = new LinkedList<>();
+\end{lstlisting}
+
+Mark the statements that compile (ignore what happens when they run).
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{1}] \lstinline|d.push(1);|
+\item[\cb{0}] \lstinline|d.get(0);|
+\item[\cb{1}] \lstinline|l.get(0);|
+\item[\cb{0}] \lstinline|l.push(1);|
+\end{itemize}
+\end{question}
+
+\begin{question}
+The following method of an \lstinline|ArrayQueue| (circular array, fields \lstinline|data|, \lstinline|front|, \lstinline|size|) removes and returns the front element, but one line contains a bug.
+Which change fixes the method (select one)?
+
+Hint: try it by hand on a queue where \lstinline|front| is not 0 and the queue wraps around the end of the array.
+
+\begin{lstlisting}[numbers=left,numberstyle=\tiny,xleftmargin=2em]
+public E dequeue() {
+    if (size == 0) throw new NoSuchElementException("empty queue");
+    E e = data[front];
+    data[front] = null;
+    front = front + 1;
+    size--;
+    return e;
+}
+\end{lstlisting}
+
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] line 3 becomes \lstinline|E e = data[front % data.length];|
+\item[\cb{0}] line 4 becomes \lstinline|data[front % data.length] = null;|
+\item[\cb{1}] line 5 becomes \lstinline[keepspaces=true]|front = (front + 1) % data.length;|
+\item[\cb{0}] line 5 becomes \lstinline[keepspaces=true]|front = (front + 1) % size;|
+\item[\cb{0}] line 6 becomes \lstinline[keepspaces=true]|size = size - 1 % data.length;|
+\end{itemize}
+\end{question}
+
+\begin{question}
+The following four lines are the body of \lstinline|addFirst(e)| for a circular-array deque (field \lstinline|data|, \lstinline|front|, \lstinline|size|; method \lstinline|grow()| doubles the capacity), but they are in the wrong order.
+Write the numbers 1 to 4 in the boxes to give the order in which they must be executed.
+
+\medskip
+\begin{tabular}{@{}l@{\quad}l@{}}
+\ansbox{4} & \lstinline|size++;| \\[3pt]
+\ansbox{1} & \lstinline[keepspaces=true]|if (size == data.length) grow();| \\[3pt]
+\ansbox{3} & \lstinline|data[front] = e;| \\[3pt]
+\ansbox{2} & \lstinline[keepspaces=true]|front = (front - 1 + data.length) % data.length;| \\
+\end{tabular}
+\end{question}
+
+\begin{question}
+What does the following code fragment print?
+
+\begin{lstlisting}
+Queue<Integer> q1 = new ArrayDeque<>();
+Queue<Integer> q2 = new ArrayDeque<>();
+Queue<Integer> tmp;
+
+q2.offer(40);
+while (!q1.isEmpty()) q2.offer(q1.poll());
+tmp = q1; q1 = q2; q2 = tmp;    // swap q1 and q2
+
+q2.offer(15);
+while (!q1.isEmpty()) q2.offer(q1.poll());
+tmp = q1; q1 = q2; q2 = tmp;    // swap q1 and q2
+
+q2.offer(70);
+while (!q1.isEmpty()) q2.offer(q1.poll());
+tmp = q1; q1 = q2; q2 = tmp;    // swap q1 and q2
+
+System.out.print(q1.poll() + " " + q1.poll() + " " + q1.poll());
+\end{lstlisting}
+
+Answer: \underline{\hspace{2in}} \ifanswers (70 15 40: the two queues emulate a stack)\fi
+\end{question}
+
+\begin{question}
+\lstinline|dq| is an \lstinline|ArrayDeque<Integer>| with $N$ elements, and \lstinline|k| is a non-negative \lstinline|int|.
+
+\begin{lstlisting}
+void rotate(ArrayDeque<Integer> dq, int k) {
+    int steps = k % dq.size();
+    for (int i = 0; i < steps; i++)
+        dq.addLast(dq.removeFirst());
+}
+\end{lstlisting}
+
+\lstinline|rotate| moves the first \lstinline|steps| elements to the back, preserving their relative order. What is the worst-case complexity of \lstinline|rotate|, as a function of $N$?
+
+Answer: \underline{\hspace{1.5in}} \ifanswers ($O(N)$: \lstinline|steps| $< N$ for any \lstinline|k|)\fi
+\end{question}
+
+\begin{question}
+(2 points) A standard deque implementation of \lstinline|Integer|s, based on a circular array, starts empty with an initial capacity of 4 (its capacity doubles when it grows). The following operations are performed in order:
+
+\begin{minipage}[t]{0.3\linewidth}
+\vspace{-\baselineskip}
+\begin{lstlisting}
+dq.addFirst(1);
+dq.addLast(2);
+dq.addFirst(3);
+dq.removeLast();
+dq.addLast(4);
+dq.addFirst(5);
+dq.removeFirst();
+\end{lstlisting}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.66\linewidth}
+Draw the final state of the underlying array (every cell, whether it holds a reference to an \lstinline|Integer| object or none at all), the \lstinline|Integer| objects it references, and the final values of \lstinline|front| and \lstinline|size|.
+
+Hint: the cells that do not reference any object contain \lstinline|null|.
+\end{minipage}
+
+\begin{answerspace}{2.5in}
+\ifanswers
+\begin{verbatim}
+array (cells 0..3): [ref->4, null, ref->3, ref->1]
+front = 2, size = 3
+(the deque never holds more than 4 elements, so the array never grows;
+2 is removed by removeLast(), 5 by removeFirst())
+\end{verbatim}
+\fi
+\end{answerspace}
+\end{question}
+
+\begin{question}
+(2 points) Design a class \lstinline|RecentLog| that keeps only the last \lstinline|k| lines of a log, where \lstinline|k| is given to the constructor \lstinline|RecentLog(int k)|. It supports two methods, \lstinline|add| and \lstinline|get|, that should run in $O(1)$ time in the \textbf{worst case}, regardless of \lstinline|k|.
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item \lstinline|add(String line)|: adds \lstinline|line|; if \lstinline|k| lines are already stored, the oldest one is discarded;
+\item \lstinline|get(int i)|: returns the \lstinline|i|-th most recent line stored (\lstinline|get(0)| is the line added last); throws an exception if \lstinline|i| is negative or not smaller than the number of lines stored.
+\end{itemize}
+
+Your answer should briefly outline what fields you would have in your data structure (their type and how they are initialized), how \lstinline|add| and \lstinline|get| work, and why they achieve the intended complexity. You do not need to write code.
+
+\begin{answerspace}{4.5in}
+\ifanswers
+\begin{verbatim}
+Fields: String[] data of length k (allocated once, never grows),
+        int front (index of the oldest line), int size.
+
+add(line): if size < k: data[(front + size) % k] = line; size++
+           else (full): data[front] = line (overwrites the oldest);
+                        front = (front + 1) % k
+           O(1) worst case: no shifting, and no grow() since the
+           capacity is fixed.
+
+get(i):    throw if i < 0 or i >= size
+           return data[(front + size - 1 - i) % k]
+           O(1): one index computation.
+
+Also correct (simpler): String[] data of length k, long n = number
+of lines ever added.
+add(line): data[n % k] = line; n++
+get(i):    throw if i < 0 or i >= min(n, k)
+           return data[(n - 1 - i) % k]
+
+Not O(1) worst case: ArrayDeque/LinkedList have no O(1) get(i);
+a growing array is only O(1) amortized for add.
+\end{verbatim}
+\fi
+\end{answerspace}
+\end{question}
