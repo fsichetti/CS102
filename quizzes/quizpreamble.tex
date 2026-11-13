@@ -39,6 +39,7 @@
   xleftmargin=1em,
   framexleftmargin=1em,
   columns=fullflexible,
+  keepspaces=true,
 }
 \lstset{style=java}
 
@@ -48,16 +49,23 @@
 \newcommand{\ansbox}[1]{\framebox[2em][c]{\rule{0pt}{1.6em}\ifanswers #1\fi}}
 
 \newcounter{qnum}
+% separator rule between consecutive questions (none after the last one);
+% drawn as glue (\cleaders) so it is discarded instead of starting a new page
+\newcommand{\qsep}{\par\bigskip
+  \cleaders\hbox to \linewidth{\hfil\rule{0.4\linewidth}{0.4pt}\hfil}\vskip 0.4pt
+  \medskip}
 \newenvironment{question}{%
   \par\noindent
+  \ifnum\value{qnum}>0 \qsep\fi
   \stepcounter{qnum}%
   \begin{minipage}{\linewidth}
   \noindent\textbf{\theqnum.}\enskip\ignorespaces
 }{%
   \end{minipage}\par
-  \bigskip
-  \begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
-  \bigskip
 }
+
+% fixed-height answer area, identical in both versions so the key keeps the student layout;
+% put the key's answer inside it with \ifanswers ... \fi (it must fit in the given height)
+\newenvironment{answerspace}[1]{\par\noindent\begin{minipage}[t][#1][t]{\linewidth}}{\end{minipage}}
 
 \newcommand{\fullname}{Full Name: \underline{\hspace{4in}}\par\bigskip}
