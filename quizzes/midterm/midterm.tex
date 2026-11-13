@@ -1,0 +1,344 @@
+{\Large\bfseries Midterm Exam\par}
+\bigskip
+
+\fullname
+
+The exam contains 8 questions, worth 2 to 4 points each as marked. The total is 22 points and the score is out of 20 (so you still get full credit even if you lose up to 2 points).
+
+60 minutes. One handwritten A6 (or 4x6 index card) cheat sheet allowed, no printed material.
+Remember that your electronic devices should be silent and put away in your bag at all times.
+
+\bigskip
+\begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
+\bigskip
+
+\begin{question}
+(2 points) Consider the following class, and the code fragment below it, which runs inside a method.
+
+\begin{lstlisting}
+class Node {
+    int data;
+    Node next;
+    Node(int data, Node next) { this.data = data; this.next = next; }
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+Node head = null;
+for (int i = 1; i <= 4; i++)
+    head = new Node(i, head);
+Node keep = head.next.next;
+head = head.next;
+head.next = null;
+\end{lstlisting}
+
+(a) Right after the last line is executed, which \lstinline|Node| objects can be garbage collected? Identify them by their \lstinline|data|.
+
+Answer: \underline{\hspace{2in}} \ifanswers (only the node with data 4: \lstinline|head| refers to 3, \lstinline|keep| to 2, which refers to 1, and nothing refers to 4)\fi
+
+\bigskip
+(b) Right after the last line is executed, mark where each of the following is stored.
+
+\begin{center}
+\begin{tabular}{@{}p{3.6in}cc@{}}
+\toprule
+ & Stack & Heap \\
+\midrule
+the variable \lstinline|keep| & \cb{1} & \cb{0} \\
+the \lstinline|Node| object whose \lstinline|data| is 3 & \cb{0} & \cb{1} \\
+the field \lstinline|next| of the \lstinline|Node| whose \lstinline|data| is 2 & \cb{0} & \cb{1} \\
+the \lstinline|int| value 1, stored in the field \lstinline|data| of a \lstinline|Node| & \cb{0} & \cb{1} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{question}
+
+\begin{question}
+(2 points) In each fragment below, \lstinline|x| holds $N$ elements before the fragment runs, and was declared as one of \lstinline|ArrayList<Integer> x|, \lstinline|LinkedList<Integer> x| or \lstinline|ArrayDeque<Integer> x|.
+\lstinline|sum| is an \lstinline|int| variable.
+
+\begin{minipage}[t]{0.48\linewidth}
+(A)
+\begin{lstlisting}
+for (int i = 0; i < N; i++)
+    x.push(i);
+while (!x.isEmpty())
+    sum += x.pop();
+\end{lstlisting}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}
+(B)
+\begin{lstlisting}
+for (int i = 0; i < x.size(); i++)
+    sum += x.get(i);
+\end{lstlisting}
+\end{minipage}
+
+For each fragment and each declaration, write ``does not compile'' if the fragment does not compile, and otherwise the worst-case complexity of the whole fragment, as a function of $N$.
+
+\begin{center}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{@{}c|p{1.4in}|p{1.4in}|p{1.4in}@{}}
+ & \lstinline|ArrayList| & \lstinline|LinkedList| & \lstinline|ArrayDeque| \\
+\hline
+(A) & \ifanswers does not compile\fi & \ifanswers $O(N)$\fi & \ifanswers $O(N)$\fi \\
+\hline
+(B) & \ifanswers $O(N)$\fi & \ifanswers $O(N^2)$\fi & \ifanswers does not compile\fi \\
+\end{tabular}
+\end{center}
+
+\ifanswers (A: \lstinline|ArrayList| has no \lstinline|push|/\lstinline|pop|; on \lstinline|ArrayDeque| a single \lstinline|push| can cost $O(N)$, but $N$ of them cost $O(N)$ in total. B: \lstinline|ArrayDeque| has no \lstinline|get(i)|.)\fi
+\end{question}
+
+\begin{question}
+(2 points) The method below computes the text typed on a keyboard, given the sequence of keys pressed.
+The key \lstinline|<| is a backspace: it erases the last character of the text typed so far (if the text is empty, it does nothing).
+For example, \lstinline|typedText("cat<<ow")| returns \lstinline|"cow"|, and \lstinline|typedText("a<<b")| returns \lstinline|"b"|.
+
+\begin{lstlisting}
+String typedText(String keys) {
+    Deque<Character> text = new ArrayDeque<>();
+    for (char c : keys.toCharArray()) {
+        if (c == '<') {
+            if (!text.isEmpty())
+                text.______________;        // (1)
+        } else {
+            text.______________;            // (2)
+        }
+    }
+    StringBuilder sb = new StringBuilder();
+    while (!text.isEmpty())
+        sb.append(text.______________);     // (3)
+    return sb.toString();
+}
+\end{lstlisting}
+
+Fill in the blanks with methods of \lstinline|Deque|.
+
+(1): \lstinline|text.|\underline{\hspace{2in}} \ifanswers (\lstinline|removeLast()|)\fi
+
+\medskip
+(2): \lstinline|text.|\underline{\hspace{2in}} \ifanswers (\lstinline|addLast(c)|)\fi
+
+\medskip
+(3): \lstinline|text.|\underline{\hspace{2in}} \ifanswers (\lstinline|removeFirst()|)\fi
+
+\ifanswers (Also correct, mirrored: \lstinline|removeFirst()|, \lstinline|addFirst(c)| (or \lstinline|push(c)|), \lstinline|removeLast()|. Blanks (1) and (2) must work on the same end, (3) on the other one.)\fi
+\end{question}
+
+\begin{question}
+(2 points) Consider the following class, and three comparators for it.
+
+\begin{lstlisting}
+class Student {
+    String name;
+    int section;
+    int score;
+}
+
+class BySection   implements Comparator<Student> { ... }   // section, smallest first
+class ByScoreDesc implements Comparator<Student> { ... }   // score, highest first
+class ByName      implements Comparator<Student> { ... }   // name, alphabetical
+\end{lstlisting}
+
+The array \lstinline|roster| must be ordered by section; students in the same section by score, from highest to lowest; students with the same section and the same score by name.
+Instead of writing a new comparator, we call \lstinline|sort(roster, c)| three times, once with each comparator above.
+\lstinline|sort| uses one of the sorting algorithms seen in class.
+
+(a) What property should \lstinline|sort| have for the three calls to produce the required ordering?
+
+Answer: \underline{\hspace{1.5in}} \ifanswers (stable: each call must keep the order produced by the previous calls among students that it considers equal)\fi
+
+\bigskip
+(b) Name one of the algorithms seen in class that has that property.
+
+Answer: \underline{\hspace{1.5in}} \ifanswers (bubble sort, insertion sort or merge sort)\fi
+
+\bigskip
+(c) Write the numbers 1 to 3 in the boxes to give the order in which the three calls must be executed.
+
+\medskip
+\begin{tabular}{@{}l@{\quad}l@{}}
+\ansbox{3} & \lstinline|sort(roster, new BySection());| \\[6pt]
+\ansbox{1} & \lstinline|sort(roster, new ByName());| \\[6pt]
+\ansbox{2} & \lstinline|sort(roster, new ByScoreDesc());| \\
+\end{tabular}
+\end{question}
+
+\begin{question}
+(3 points) We say that an array of $N$ distinct elements is \textbf{$k$-sorted} if every element is at most $k$ positions away from its position in the sorted array.
+For example, \lstinline|{2, 1, 3, 5, 4}| is 1-sorted, and \lstinline|{3, 1, 2, 6, 4, 5}| is 2-sorted.
+
+(a) What is the worst-case complexity of insertion sort on a $k$-sorted array, as a function of $N$ and $k$? Select one, and justify your answer briefly.
+
+\cb{0} $O(N)$ \qquad \cb{0} $O(k)$ \qquad \cb{0} $O(\min(N, k))$ \qquad \cb{0} $O(N + k)$ \qquad \cb{1} $O(Nk)$
+
+\begin{answerspace}{1in}
+\ifanswers
+Inserting \lstinline|a[i]| moves it past the larger elements before it, and there are at most $k$ of those: the $i - k$ smallest elements belong at indices $0..i-k-1$, so they all start before index $i$, and they are all smaller than \lstinline|a[i]|. So each insertion costs $O(k)$.
+(Accept ``each element moves at most $k$ positions'' as a justification.)
+\fi
+\end{answerspace}
+
+\bigskip
+(b) What is the worst-case complexity of merge sort on a $k$-sorted array?
+
+Hint: merge sort is not adaptive.
+
+Answer: \underline{\hspace{1in}} \ifanswers ($O(N \log N)$)\fi
+
+\bigskip
+(c) Let $N = 1{,}000{,}000$. Given your answers above, which algorithm would you choose for $k = 5$, and which for $k = 1000$? Assume that the constants and low-order terms hidden in the two complexities above are similar.
+
+Hint: $\log_2 N \approx 20$.
+
+\begin{center}
+\begin{tabular}{@{}p{1.2in}cc@{}}
+\toprule
+ & insertion sort & merge sort \\
+\midrule
+$k = 5$ & \cb{1} & \cb{0} \\
+$k = 1000$ & \cb{0} & \cb{1} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\ifanswers ($k = 5$: about $5 \cdot 10^6$ vs. $2 \cdot 10^7$; $k = 1000$: about $10^9$ vs. $2 \cdot 10^7$)\fi
+\end{question}
+
+\begin{question}
+(3 points) Consider an array-based queue implementation that stores its elements in \lstinline|data[front]|, \ldots, \lstinline|data[front + size - 1]|, \textbf{without} wrapping around (it does \textbf{not} use a circular array):
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item \lstinline|enqueue(e)| stores \lstinline|e| in \lstinline|data[front + size]|; if \lstinline|front + size == data.length|, it first doubles the capacity of the array;
+\item \lstinline|dequeue()| returns \lstinline|data[front]| and increments \lstinline|front|.
+\end{itemize}
+To reuse the empty cells before \lstinline|front|, the queue sometimes \textbf{compacts}: it copies its elements to \lstinline|data[0]|, \ldots, \lstinline|data[size - 1]| and sets \lstinline|front = 0|, in $O($\lstinline|size|$)$ time.
+
+(a) Consider the following three strategies for when to compact, and select the one that makes both \lstinline|enqueue| and \lstinline|dequeue| $O(1)$ amortized:
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{0}] at the end of every \lstinline|dequeue()|;
+\item[\cb{1}] at the end of a \lstinline|dequeue()|, if \lstinline|front >= size|;
+\item[\cb{0}] at the start of an \lstinline|enqueue(e)|, if \lstinline|front > 0| and \lstinline|front + size == data.length| (i.e. compacting instead of doubling).
+\end{itemize}
+
+\ifanswers (A compaction moves \lstinline|size| elements, and since the previous one \lstinline|front| went from 0 to at least \lstinline|size|, so at least \lstinline|size| dequeues paid for it. Compacting at every dequeue costs $O(N)$ each time.)\fi
+
+\bigskip
+(b) The queue starts empty, with an array of capacity 8, and the following operations are performed, using the strategy you selected in (a):
+
+\begin{minipage}[t]{0.35\linewidth}
+\vspace{-\baselineskip}
+\begin{lstlisting}
+for (int i = 1; i <= 5; i++)
+    q.enqueue(i);
+q.dequeue();
+q.dequeue();
+q.dequeue();
+q.enqueue(6);
+q.dequeue();
+\end{lstlisting}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.6\linewidth}
+Draw the final state of the array (every cell), and give the final values of \lstinline|front| and \lstinline|size|.
+
+Hint: assume that the cells that do not hold an element of the queue contain \lstinline|null|.
+\end{minipage}
+
+\begin{answerspace}{1.2in}
+\ifanswers
+\begin{verbatim}
+data (cells 0..7): [null, 5, 6, null, null, null, null, null]
+front = 1, size = 2
+(the 3rd dequeue makes front = 3 >= size = 2, so it compacts:
+[4, 5, ...], front = 0; the last dequeue makes front = 1 < size = 2,
+so it does not compact)
+With the other strategies, for follow-through credit:
+compact at every dequeue: [5, 6, null, null, null, null, null, null]
+                          front = 0, size = 2
+compact in enqueue:       [null, null, null, null, 5, 6, null, null]
+                          front = 4, size = 2
+\end{verbatim}
+\fi
+\end{answerspace}
+\end{question}
+
+\begin{question}
+(4 points) Consider the following method, which uses a \lstinline|Deque| as a stack.
+
+\begin{lstlisting}
+void printIter(int n) {
+    Deque<Integer> stack = new ArrayDeque<>();
+    stack.push(n);
+    while (!stack.isEmpty()) {
+        int m = stack.pop();
+        if (m <= 0) continue;
+        System.out.print(m + " ");
+        stack.push(m - 1);
+        stack.push(m - 2);
+    }
+}
+\end{lstlisting}
+
+(a) What does \lstinline|printIter(4)| print?
+
+Answer: \underline{\hspace{2.5in}} \ifanswers (\lstinline|4 2 1 3 1 2 1|)\fi
+
+\bigskip
+(b) Write a recursive method \lstinline|printRec(int n)| that prints exactly the same as \lstinline|printIter(n)|, for every \lstinline|n|, without using any loop or \lstinline|Deque|.
+
+\begin{answerspace}{1.8in}
+\ifanswers
+\begin{lstlisting}
+void printRec(int n) {
+    if (n <= 0) return;
+    System.out.print(n + " ");
+    printRec(n - 2);
+    printRec(n - 1);
+}
+\end{lstlisting}
+The calls are in the opposite order of the pushes: \lstinline|m - 2| is pushed last, so it is popped first, and everything it pushes is popped before \lstinline|m - 1|.
+With the calls in push order, \lstinline|printRec(4)| would print \lstinline|4 3 2 1 1 2 1|.
+\fi
+\end{answerspace}
+\end{question}
+
+\begin{question}
+(4 points) A singly linked list has the following fields.
+
+\begin{lstlisting}
+public class MyLinkedList<E> {
+    private static class Node<E> {
+        E data;
+        Node<E> next;
+    }
+    private Node<E> head;    // first node, null if the list is empty
+    private Node<E> tail;    // last node, null if the list is empty
+    private int size;
+    ...
+}
+\end{lstlisting}
+
+Write the method \lstinline|public void rotateRight(int k)|, where $k \ge 0$, which moves the last \lstinline|k| elements to the front of the list, keeping their order.
+Rotating by \lstinline|size| gives back the same list, so if \lstinline|k >= size| the list is rotated by \lstinline|k % size|.
+For example, both \lstinline|rotateRight(2)| and \lstinline|rotateRight(7)| turn \lstinline|[1, 2, 3, 4, 5]| into \lstinline|[4, 5, 1, 2, 3]|.
+On an empty list, the method does nothing.
+
+Your method must run in $O(N)$, and must not create any node nor change any \lstinline|data| field.
+
+Hint: one way is to make the list circular, move \lstinline|head| and \lstinline|tail| forward together by the right number of steps, then cut the circle open again.
+
+\begin{answerspace}{3in}
+\ifanswers
+\begin{lstlisting}
+public void rotateRight(int k) {
+    if (size == 0) return;
+    tail.next = head;                    // make the list circular
+    for (int i = 0; i < size - k % size; i++) {
+        head = head.next;
+        tail = tail.next;
+    }
+    tail.next = null;                    // cut the circle
+}
+\end{lstlisting}
+\fi
+\end{answerspace}
+\end{question}
