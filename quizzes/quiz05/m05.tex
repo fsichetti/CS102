@@ -1,0 +1,191 @@
+{\Large\bfseries Mockup\par}
+\bigskip
+
+\fullname
+
+30 minutes, one handwritten or 4x6 index card (or A6) cheat sheet allowed, no printed material.
+
+\bigskip
+\begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
+\bigskip
+
+Hint: in class we used \emph{bin}, \emph{bucket} and \emph{cell} interchangeably: they all refer to the same thing, the cells of the underlying array of a hash table.
+
+\bigskip
+\begin{question}
+A map with $N$ \lstinline|Integer| keys is stored either in a \lstinline|HashMap| or in an \lstinline|ArrayList| of (key, value) pairs kept sorted by key.
+For each operation, mark the implementations where it runs within the given time (on average, for \lstinline|HashMap|).
+
+\begin{center}
+\begin{tabular}{@{}p{3.3in}cc@{}}
+\toprule
+Operation & \lstinline|HashMap| & sorted \lstinline|ArrayList| \\
+\midrule
+\lstinline|get(k)| in $O(1)$ & \cb{1} & \cb{0} \\
+\lstinline|remove(k)| in $O(1)$ & \cb{1} & \cb{0} \\
+print all the keys in increasing order in $O(N)$ & \cb{0} & \cb{1} \\
+return the smallest key in $O(1)$ & \cb{0} & \cb{1} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{question}
+
+\begin{question}
+\lstinline|HPoint| has two \lstinline|int| fields \lstinline|x| and \lstinline|y|, and its \lstinline|equals| returns \lstinline|true| exactly when both fields are equal.
+Mark the implementations of \lstinline|hashCode()| for \lstinline|HPoint| that respect the \lstinline|equals|/\lstinline|hashCode| contract.
+
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{1}] \lstinline|return 42;|
+\item[\cb{1}] \lstinline|return x;|
+\item[\cb{0}] \lstinline|return x + y + (int) (10 * Math.random());|
+\item[\cb{0}] \lstinline|return System.identityHashCode(this);|
+\end{itemize}
+\end{question}
+
+\begin{question}
+What does the following code fragment print?
+
+\begin{lstlisting}
+Set<String> s = new HashSet<>();
+int count = 0;
+for (String w : "a rose is a rose is a rose".split(" "))
+    if (!s.add(w)) count++;
+s.remove("is");
+System.out.print(count + " " + s.size() + " " + s.add("is") + " " + s.add("a"));
+\end{lstlisting}
+
+Answer: \underline{\hspace{2in}} \ifanswers (5 2 true false)\fi
+\end{question}
+
+\begin{question}
+A hash table uses linear probing with lazy deletion (tombstones), has $M = 7$ buckets, and \mbox{\lstinline|hash(k) = k|}. Starting from an empty table, the keys 8, 15, 22, 2 are inserted in this order, then \lstinline|remove(15)| is called, then the key 29 is inserted. A new key is stored in the first empty bucket or tombstone of its probe sequence, once it is clear that the key is not already in the table.
+
+In which bucket is 29 stored?
+
+Answer: \underline{\hspace{1in}} \ifanswers (2, the tombstone of 15)\fi
+\end{question}
+
+\begin{question}
+A hash table uses quadratic probing, \lstinline|h(k, j) = (hash(k) + j*j) % M|, has $M = 7$ buckets, and \mbox{\lstinline|hash(k) = k|}. Starting from an empty table, the keys 2, 9, 16, 23 are inserted in this order (there is no rehashing).
+
+In which buckets are 16 and 23 stored?
+
+Bucket of 16: \underline{\hspace{1in}} \ifanswers (6)\fi
+\qquad Bucket of 23: \underline{\hspace{1in}} \ifanswers (4: it tries buckets 2, 3, 6, 4)\fi
+\end{question}
+
+\begin{question}
+A hash table uses quadratic probing, \lstinline|h(k, j) = (hash(k) + j*j) % M|, has $M = 11$ buckets, and \mbox{\lstinline|hash(k) = k|}. Its current state is the following (empty buckets are blank).
+
+\medskip
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|*{11}{c|}}
+\hline
+0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\hline
+\phantom{00} & \phantom{00} & \phantom{00} & \phantom{00} & \phantom{00} & 5 & 16 & 40 & \phantom{00} & 27 & \phantom{00} \\
+\hline
+\end{tabular}
+\end{center}
+\medskip
+
+What is the load factor $\alpha$? How many buckets does \lstinline|get(38)| inspect, including the last one?
+
+$\alpha$: \underline{\hspace{1in}} \ifanswers ($4/11$)\fi
+\qquad Buckets inspected: \underline{\hspace{1in}} \ifanswers (4: buckets 5, 6, 9, 3, bucket 3 is empty)\fi
+\end{question}
+
+\begin{question}
+\lstinline|keys| is an array of $N$ distinct \lstinline|Integer|s, and the hash function spreads them evenly over the buckets.
+
+\begin{lstlisting}
+for (int i = 0; i < N; i++)
+    m.put(keys[i], i);
+for (int i = 0; i < N; i++)
+    m.get(keys[i]);
+\end{lstlisting}
+
+What is the complexity of this code on average, as a function of $N$, in the two cases below?
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item \lstinline|m| is a \lstinline|ChainedHashMap|, a typical \lstinline|Map| implementation using separate chaining, as the one seen in class (it rehashes to keep $\alpha \le 0.75$);
+\item \lstinline|m| is a \lstinline|FixedChainedHashMap|: the same, but it never rehashes, and always has $M = 100$ buckets.
+\end{itemize}
+
+\lstinline|ChainedHashMap|: \underline{\hspace{1in}} \ifanswers ($O(N)$)\fi
+\qquad \lstinline|FixedChainedHashMap|: \underline{\hspace{1in}} \ifanswers ($O(N^2)$: $\alpha$ grows up to $N/100$, and each operation costs $O(1 + \alpha)$)\fi
+\end{question}
+
+\begin{question}
+(2 points) A hash table with separate chaining maps \lstinline|Integer| keys to \lstinline|String| values, and \lstinline|hash(k) = k|. It is a \lstinline|ChainedHashMap|, a typical \lstinline|Map| implementation using separate chaining, as the one seen in class:
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item \lstinline|put| of a key already in the table replaces its value; a new key is added at the \textbf{front} of its chain;
+\item after a \lstinline|put| that makes $N > 0.75 \cdot M$, it rehashes into $2M$ buckets: it visits the old buckets from 0 to $M-1$, each chain from front to back, and moves each node to the \textbf{front} of its new chain.
+\end{itemize}
+
+It starts empty, with $M = 4$. The following operations are performed in order:
+
+\begin{minipage}[t]{0.3\linewidth}
+\vspace{-\baselineskip}
+\begin{lstlisting}
+put(5, "A");
+put(9, "B");
+put(2, "C");
+put(13, "D");
+put(9, "E");
+put(21, "F");
+\end{lstlisting}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.66\linewidth}
+Draw the final table: every bucket, and the pairs in each chain, in order from the front.
+\end{minipage}
+
+\begin{answerspace}{2.5in}
+\ifanswers
+\begin{verbatim}
+M = 8
+0:
+1: 9|E
+2: 2|C
+3:
+4:
+5: 21|F -> 5|A -> 13|D
+6:
+7:
+(put(13, "D") makes N = 4 > 3: rehash. Old chain 1 is 13, 9, 5:
+13 and 5 go to bucket 5, in reverse order; 9 goes to bucket 1.)
+\end{verbatim}
+\fi
+\end{answerspace}
+\end{question}
+
+\begin{question}
+(2 points) Design a class \lstinline|UniqueQueue<E>|: a FIFO queue in which each element appears at most once. It supports three methods, that should run in $O(1)$ time on average, regardless of the number of elements.
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item \lstinline|enqueue(E e)|: adds \lstinline|e| at the back, unless \lstinline|e| is already in the queue (then it does nothing);
+\item \lstinline|dequeue()|: removes and returns the front element;
+\item \lstinline|contains(E e)|: is \lstinline|e| in the queue?
+\end{itemize}
+
+Your answer should briefly outline what fields you would have in your data structure (their type and how they are initialized), how the three methods work, and why they achieve the intended complexity. You do not need to write code.
+
+\begin{answerspace}{4.5in}
+\ifanswers
+\begin{verbatim}
+Fields: Queue<E> queue = new ArrayDeque<>()   (the order)
+        Set<E> set = new HashSet<>()          (the same elements)
+
+enqueue(e): if (set.add(e)) queue.offer(e)
+            add returns false if e is already there: nothing happens.
+dequeue():  e = queue.poll(); set.remove(e); return e
+contains(e): set.contains(e)
+
+O(1) on average: offer and poll on an ArrayDeque are O(1) (amortized
+for offer), add, remove, contains on a HashSet are O(1) on average.
+
+Not O(1): a queue alone (contains scans it, O(N)); a set alone (no
+FIFO order).
+\end{verbatim}
+\fi
+\end{answerspace}
+\end{question}

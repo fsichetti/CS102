@@ -1,0 +1,167 @@
+\fullname
+
+The quiz contains 9 questions. Questions 8 and 9 are worth 2 points each, all others 1 point. The total is 11 points and the score is out of 10 (so you still get max points if you lose one point).
+
+One handwritten A6 (or 4x6 index card) cheat sheet allowed, no printed material.
+Remember that your electronic devices should be silent and put away in your bag at all times.
+
+\bigskip
+\begin{center}\rule{0.4\linewidth}{0.4pt}\end{center}
+\bigskip
+
+Hint: in class we used \emph{bin}, \emph{bucket} and \emph{cell} interchangeably: they all refer to the same thing, the cells of the underlying array of a hash table.
+
+\bigskip
+\begin{question}
+A set of $N$ integers is stored either in a \lstinline|HashSet<Integer>| or in an \lstinline|ArrayList<Integer>| kept sorted in increasing order.
+For each operation, mark the implementations where it runs in $O(1)$ time (on average, for \lstinline|HashSet|).
+
+\begin{center}
+\begin{tabular}{@{}p{2.6in}cc@{}}
+\toprule
+Operation & \lstinline|HashSet| & sorted \lstinline|ArrayList| \\
+\midrule
+is \lstinline|x| in the set? & \cb{1} & \cb{0} \\
+add \lstinline|x| to the set & \cb{1} & \cb{0} \\
+return the smallest element & \cb{0} & \cb{1} \\
+remove the largest element & \cb{0} & \cb{1} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{question}
+
+\begin{question}
+Exactly \textbf{2} of the following statements are true. Select them.
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{1}] if \lstinline|a.equals(b)|, then \lstinline|a.hashCode() == b.hashCode()| must hold
+\item[\cb{0}] if \lstinline|a.hashCode() == b.hashCode()|, then \lstinline|a.equals(b)| must hold
+\item[\cb{1}] a class that overrides neither \lstinline|equals| nor \lstinline|hashCode| works correctly as the key of a \lstinline|HashMap|
+\item[\cb{0}] a class that overrides \lstinline|equals| but not \lstinline|hashCode| works correctly as the key of a \lstinline|HashMap|
+\item[\cb{0}] two \lstinline|String|s that are not equal according to \lstinline|equals| always have different hash codes
+\end{itemize}
+\end{question}
+
+\begin{question}
+Exactly \textbf{2} of the following statements are true. Select them.
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item[\cb{1}] with open addressing, the load factor is always smaller than 1
+\item[\cb{0}] with separate chaining, the load factor is always smaller than 1
+\item[\cb{0}] with linear probing, \lstinline|remove(k)| can simply set the bucket of \lstinline|k| to empty
+\item[\cb{1}] quadratic probing avoids primary clustering, but not secondary clustering
+\item[\cb{0}] when a hash table with separate chaining is rehashed, each chain can be copied to the bucket with the same index in the new array
+\end{itemize}
+\end{question}
+
+\begin{question}
+A hash table with separate chaining has $M = 8$ buckets and holds $N = 6$ pairs. Only 3 of its chains are non-empty: they have lengths 4, 1 and 1.
+
+What is the load factor $\alpha$? How many calls to \lstinline|equals| does \lstinline|get(k)| make, if \lstinline|k| is not in the table and its bucket is that of the chain of length 4?
+
+$\alpha$: \underline{\hspace{1in}} \ifanswers (0.75, that is $N/M$; not $6/3$)\fi
+\qquad Calls to \lstinline|equals|: \underline{\hspace{1in}} \ifanswers (4)\fi
+\end{question}
+
+\begin{question}
+What does the following code fragment print?
+
+\begin{lstlisting}
+Map<String, Integer> m = new HashMap<>();
+m.put("x", 1);
+m.put("y", 2);
+System.out.print(m.put("x", 3) + " ");
+System.out.print(m.put("z", 4) + " ");
+System.out.print(m.remove("y") + " " + m.get("y") + " ");
+System.out.print(m.size());
+\end{lstlisting}
+
+Hint: \lstinline|put(k, v)| returns the previous value of \lstinline|k|, or \lstinline|null| if \lstinline|k| was not in the map; \lstinline|get(k)| returns \lstinline|null| if \lstinline|k| is not in the map, and \lstinline|null| is printed as \lstinline|null|.
+
+Answer: \underline{\hspace{2in}} \ifanswers (1 null 2 null 2)\fi
+\end{question}
+
+\begin{question}
+A hash table uses quadratic probing, \lstinline|h(k, j) = (hash(k) + j*j) % M|, has $M = 7$ buckets, and \mbox{\lstinline|hash(k) = k|}. Starting from an empty table, the keys 1, 2, 8, 9 are inserted in this order (there is no rehashing).
+
+In which buckets are 8 and 9 stored?
+
+Bucket of 8: \underline{\hspace{1in}} \ifanswers (5: it tries buckets 1, 2, 5)\fi
+\qquad Bucket of 9: \underline{\hspace{1in}} \ifanswers (3: it tries buckets 2, 3)\fi
+\end{question}
+
+\begin{question}
+\lstinline|words| is a list of $N$ strings. \lstinline|ChainedHashMap| is a typical \lstinline|Map| implementation using separate chaining, as the one seen in class (chains are linked lists, new nodes are added at the front, load factor is kept below $\alpha \le 0.75$ before rehashing).
+
+\begin{lstlisting}
+Map<String, Integer> count = new ChainedHashMap<>();
+for (String w : words) {
+    if (count.containsKey(w))
+        count.put(w, count.get(w) + 1);
+    else
+        count.put(w, 1);
+}
+\end{lstlisting}
+
+What is the worst-case complexity of the code snippet, as a function of $N$?
+
+Assuming that the input strings are uniformly distributed over all possible strings of length $<10$, and the map uses a good hash function, what is the average complexity?
+
+Average: \underline{\hspace{1in}} \ifanswers ($O(N)$)\fi
+\qquad Worst case: \underline{\hspace{1in}} \ifanswers ($O(N^2)$: all words in the same chain)\fi
+\end{question}
+
+\begin{question}
+(2 points) A hash table with linear probing stores \lstinline|Integer| keys (ignore the values), and \lstinline|hash(k) = k|. It works like the one we saw in class: after a \lstinline|put| that makes $N > 0.5 \cdot M$, it rehashes into $2M$ buckets, by inserting again the keys of the old buckets, from bucket 0 to bucket $M-1$.
+
+It starts empty, with $M = 4$. The keys 5, 1, 9, 13 are inserted in this order.
+
+Draw the final table: every bucket, and the key it holds (if any).
+
+Hint: track the load factor after each insertion, to know when to rehash.
+
+\begin{answerspace}{2.5in}
+\ifanswers
+\begin{verbatim}
+M = 8
+bucket:  0  1  2  3  4  5  6  7
+key:     -  1  9  -  -  5 13  -
+
+(before the rehash, M = 4: 5, 1, 9 in buckets 1, 2, 3;
+put(9) makes N = 3 > 2. Reinserted in the order 5, 1, 9:
+5 -> 5, 1 -> 1, 9 -> 1 (taken) -> 2.
+Then 13 -> 5 (taken) -> 6; N = 4, not > 4: no rehash.)
+\end{verbatim}
+\fi
+\end{answerspace}
+\end{question}
+
+\begin{question}
+(2 points) Design a class \lstinline|Gradebook| supporting three methods, that should run in $O(1)$ time on average, regardless of the number of students.
+\begin{itemize}[leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item \lstinline|setGrade(String netId, String grade)|: sets the grade of a student (for example \lstinline|"A-"|), or changes it if the student already has one;
+\item \lstinline|getGrade(String netId)|: returns the grade of a student, or \lstinline|null| if they have none;
+\item \lstinline|countWithGrade(String grade)|: returns how many students currently have that grade.
+\end{itemize}
+
+Your answer should briefly outline what fields you would have in your data structure (their type and how they are initialized), how the three methods work, and why they achieve the intended complexity. You do not need to write code.
+
+\begin{answerspace}{4.5in}
+\ifanswers
+\begin{verbatim}
+Fields: Map<String, String> gradeOf = new HashMap<>()   (netId -> grade)
+        Map<String, Integer> count = new HashMap<>()    (grade -> how many)
+
+setGrade(netId, grade):
+    old = gradeOf.put(netId, grade)       (put returns the previous value)
+    if old != null: count.put(old, count.get(old) - 1)
+    count.put(grade, count.getOrDefault(grade, 0) + 1)
+getGrade(netId):       gradeOf.get(netId)
+countWithGrade(grade): count.getOrDefault(grade, 0)
+
+O(1) on average: a constant number of map operations per method.
+
+Not O(1): gradeOf alone, countWithGrade scans all students (O(N)).
+Forgetting to decrement the old grade gives wrong counts after a change.
+\end{verbatim}
+\fi
+\end{answerspace}
+\end{question}
